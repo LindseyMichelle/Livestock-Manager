@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Livestock Manager</string>
     <string name="action_settings">Settings</string>
+    <string name = "animalType"> Type of Animal</string>
+
+    %This creates a list of animals for the listView
+    <string-array name="listOfAnimals">
+        <item>Sheep</item>
+        <item>Cow</item>
+        <item>Goat</item>
+    </string-array>
 </resources>
+
