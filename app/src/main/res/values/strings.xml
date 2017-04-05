@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Livestock Manager</string>
     <string name="action_settings">Settings</string>
+    <string name="add_animal">Add Animal</string>
+    <string name="dialog_title">Add type of animal</string>
+    <string name="add_animal_continue">Add</string>
+    <string name="cancel">Cancel</string>
+
 </resources>

@@ -1,3 +1,4 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="add_animal_margin">16dp</dimen>
+    <dimen name="content_padding_normal">16dp</dimen>
 </resources>
