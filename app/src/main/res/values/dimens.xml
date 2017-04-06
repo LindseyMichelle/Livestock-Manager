@@ -1,4 +1,5 @@
 <resources>
     <dimen name="add_animal_margin">16dp</dimen>
     <dimen name="content_padding_normal">16dp</dimen>
+    <dimen name="list_padding_bottom">80dp</dimen>
 </resources>

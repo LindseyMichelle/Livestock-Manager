@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Livestock Manager</string>
     <string name="action_settings">Settings</string>
-<<<<<<< HEAD
     <string name = "animalType"> Type of Animal</string>
 
     %This creates a list of animals for the listView
@@ -10,12 +9,11 @@
         <item>Cow</item>
         <item>Goat</item>
     </string-array>
-=======
+
     <string name="add_animal">Add Animal</string>
     <string name="dialog_title">Add type of animal</string>
     <string name="add_animal_continue">Add</string>
     <string name="cancel">Cancel</string>
 
->>>>>>> 9403000075c3e888f8829e0274555460d6cbc327
 </resources>
 
