@@ -1,12 +1,30 @@
 package com.example.teamabstraction.livestockmanager;
 
+//These are used for the ListView
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import android.os.Bundle;
+<<<<<<< HEAD
+import android.content.Intent;
+import android.support.annotation.IdRes;
+=======
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Button;
+>>>>>>> 9403000075c3e888f8829e0274555460d6cbc327
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
+<<<<<<< HEAD
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+public class HomeActivity extends AppCompatActivity
+{
+    private ListView animalListView;
+    private ArrayAdapter<String> animalListAdapter;
+=======
 import android.view.Menu;
 import android.content.DialogInterface;
 import android.widget.EditText;
@@ -16,18 +34,38 @@ import android.view.MenuItem;
 import static java.security.AccessController.getContext;
 
 public class HomeActivity extends AppCompatActivity {
+>>>>>>> 9403000075c3e888f8829e0274555460d6cbc327
 
 
     private Button addAnimal;
     private String m_Text = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Find the LisView resource
+        animalListView = (ListView) findViewById(R.id.animalList);
 
+        //Creates and populates a List of animals (May need to import from a database later
+        String[] animals = new String[]{"Sheep", "Goats", "Cows", "Chickens"};
+        ArrayList<String> listOfAnimalsArray = new ArrayList<String>();
+        listOfAnimalsArray.addAll(Arrays.asList(animals));
+
+        animalListAdapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listOfAnimalsArray);
+
+<<<<<<< HEAD
+//Set the ArrayAdapter as the ListView's Adapter
+        animalListView.setAdapter(animalListAdapter);
+        //This will display the animal information once the user clicks on it.
+        animalListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+               //Create code to view the list of a specific animal Activity.
+=======
         final Button addAnimal = (Button) findViewById(R.id.add_animal);
         addAnimal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,29 +93,12 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 });
                 builder.show();
+>>>>>>> 9403000075c3e888f8829e0274555460d6cbc327
             }
         });
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
+
+
+
