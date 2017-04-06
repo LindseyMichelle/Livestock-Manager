@@ -41,7 +41,7 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-               //Create code to view the list of a specific animal Activity. 
+               //Create code to view the list of a specific animal Activity.
             }
         });
 
