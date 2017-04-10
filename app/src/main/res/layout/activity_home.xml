@@ -51,5 +51,13 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/add_animal_margin"
         android:text="@string/add_animal"/>
+    <Button
+        android:id="@+id/next_act"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_margin="@dimen/add_animal_margin"
+        android:text="Next Activity"/>
 
 </android.support.design.widget.CoordinatorLayout>

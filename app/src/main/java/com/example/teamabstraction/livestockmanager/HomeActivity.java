@@ -3,6 +3,7 @@ package com.example.teamabstraction.livestockmanager;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.widget.Button;
@@ -20,6 +21,7 @@ public class HomeActivity extends AppCompatActivity {
     private ListView animalListView;
     private ArrayAdapter<String> animalListAdapter;
     private Button addAnimal;
+    private Button nextAct;
     private String m_Text = "";
 
     @Override
@@ -46,7 +48,19 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        //
+
+        nextAct = (Button) findViewById(R.id.next_act);
+        nextAct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent myIntent = new Intent(HomeActivity.this, IndAnimalList.class);
+                startActivity(myIntent);
+            }
+        });
+
+
+        // Creates an alert dialog to pop up for user to input information when clicked.
         addAnimal = (Button) findViewById(R.id.add_animal);
         addAnimal.setOnClickListener(new View.OnClickListener() {
             @Override
