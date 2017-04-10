@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".IndAnimalList" />
-        <activity android:name=".AnimalInfo"></activity>
+        <activity android:name=".AnimalInfo" />
     </application>
 
 </manifest>
