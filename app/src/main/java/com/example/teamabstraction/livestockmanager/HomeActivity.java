@@ -16,7 +16,8 @@ import android.content.DialogInterface;
 import android.widget.EditText;
 import android.text.InputType;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity
+{
 
     private ListView animalListView;
     private ArrayAdapter<String> animalListAdapter;
@@ -31,23 +32,30 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         //Find the ListView resource
         animalListView = (ListView) findViewById(R.id.animalList);
+        animalListView.setClickable(true);
 
         //Creates and populates a list of animals (May need to import from a database later
         String[] animals = new String[]{"Sheep", "Goats", "Cows", "Chickens"};
-        ArrayList<String> listOfAnimalsArray = new ArrayList<String>();
+        final ArrayList<String> listOfAnimalsArray = new ArrayList<String>();
         listOfAnimalsArray.addAll(Arrays.asList(animals));
         animalListAdapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listOfAnimalsArray);
 
         //Set the ArrayAdapter as the ListView's Adapter
         animalListView.setAdapter(animalListAdapter);
+
+
         //This will display the animal information once the user clicks on it.
-        animalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        animalListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO: Create code to view the list of a specific animal Activity.
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                //This is where I get the error. When the item is clicked
+                Intent myIntent = new Intent(HomeActivity.this, IndAnimalList.class);
+                startActivity(myIntent);
             }
         });
-
 
         nextAct = (Button) findViewById(R.id.next_act);
         nextAct.setOnClickListener(new View.OnClickListener() {
