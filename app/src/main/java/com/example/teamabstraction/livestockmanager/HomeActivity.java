@@ -21,7 +21,8 @@ public class HomeActivity extends AppCompatActivity {
     private ListView animalListView;
     private ArrayAdapter<String> animalListAdapter;
     private Button addAnimal;
-    private Button nextAct;
+
+    private Button deleteAnimal;
     private String m_Text = "";
 
     @Override
@@ -31,10 +32,11 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         //Find the ListView resource
         animalListView = (ListView) findViewById(R.id.animalList);
+        animalListView.setClickable(true);
 
         //Creates and populates a list of animals (May need to import from a database later
         String[] animals = new String[]{"Sheep", "Goats", "Cows", "Chickens"};
-        ArrayList<String> listOfAnimalsArray = new ArrayList<String>();
+        final ArrayList<String> listOfAnimalsArray = new ArrayList<String>();
         listOfAnimalsArray.addAll(Arrays.asList(animals));
         animalListAdapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listOfAnimalsArray);
 
@@ -44,18 +46,8 @@ public class HomeActivity extends AppCompatActivity {
         animalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO: Create code to view the list of a specific animal Activity.
-            }
-        });
-
-
-        nextAct = (Button) findViewById(R.id.next_act);
-        nextAct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
                 Intent myIntent = new Intent(HomeActivity.this, IndAnimalList.class);
-                startActivity(myIntent);
+                    startActivity(myIntent);
             }
         });
 
@@ -90,6 +82,66 @@ public class HomeActivity extends AppCompatActivity {
                 builder.show();
             }
         });
+
+        // Creates an alert dialog to pop up for user to input information when clicked.
+        deleteAnimal = (Button) findViewById(R.id.delete_animal_type);
+        deleteAnimal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+                builder.setTitle(R.string.delete_dialog_title);
+
+                // Set up the input
+                final EditText input = new EditText(HomeActivity.this);
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+
+                // Set up the buttons
+                builder.setPositiveButton(R.string.delete_animal_continue, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        m_Text = input.getText().toString();
+                        AlertDialog deleteConfirmation = AskOption();
+                        deleteConfirmation.show();
+                        // TODO: m_text to database
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
+
+    private AlertDialog AskOption() {
+        AlertDialog deleteConfirmation =new AlertDialog.Builder(this)
+                //set message and title
+                .setTitle("Delete")
+                .setMessage("Are you sure you want to delete the animal type: " + m_Text + "?")
+                // TODO: insert animals name that will be deleted
+
+                .setPositiveButton ("Delete", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        //code to remove from database
+                        // TODO: insert code to remove animal from DB
+                        dialog.dismiss();
+                    }
+
+                })
+
+                .setNegativeButton ("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .create();
+        return deleteConfirmation;
 
     }
 }

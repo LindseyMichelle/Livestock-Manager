@@ -10,10 +10,20 @@
         <item>Goat</item>
     </string-array>
 
+    <string-array name="individualListOfAnimals">
+        <item>Betsie</item>
+        <item>George </item>
+        <item>Elizabeth</item>
+        <item> Bartholemew</item>
+    </string-array>
+
+
     <string name="add_animal">Add Animal</string>
     <string name="dialog_title">Add type of animal</string>
+    <string name="delete_dialog_title">Delete type of animal</string>
     <string name="add_animal_continue">Add</string>
     <string name="cancel">Cancel</string>
+    <string name="delete_animal_continue">Delete</string>
 
 </resources>
 

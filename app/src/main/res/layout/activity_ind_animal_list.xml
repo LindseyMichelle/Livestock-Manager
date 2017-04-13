@@ -7,14 +7,23 @@
     android:layout_height="match_parent"
     tools:context="com.example.teamabstraction.livestockmanager.IndAnimalList">
 
+    <ListView
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/list_padding_bottom"
+        android:id = "@+id/individualAnimalList"
+        android:textSize = "16sp">
+    </ListView>
+
     <Button
         android:id="@+id/add_ind_animal"
-        android:textAllCaps="false"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/add_animal_margin"
-        android:text="@string/add_animal" />
+        android:text="@string/add_animal"
+        android:textAllCaps="false" />
 
 
 </android.support.design.widget.CoordinatorLayout>
