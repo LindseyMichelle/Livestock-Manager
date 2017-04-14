@@ -18,7 +18,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>git
+        </activity>
         <activity android:name=".IndAnimalList" />
         <activity android:name=".AnimalInfo" />
         <activity android:name=".SpecificAnimalView" />
