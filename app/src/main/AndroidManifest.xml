@@ -22,7 +22,6 @@
         <activity android:name=".IndAnimalList" />
         <activity android:name=".AnimalInfo" />
         <activity android:name=".SpecificAnimalView" />
-        <activity android:name=".DatabaseHelper"></activity>
     </application>
 
 </manifest>
