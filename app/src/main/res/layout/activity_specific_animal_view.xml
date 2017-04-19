@@ -16,7 +16,8 @@
         android:text="Delete"
         android:textAllCaps="false"
         tools:layout_editor_absoluteX="259dp"
-        tools:layout_editor_absoluteY="450dp" />
+        tools:layout_editor_absoluteY="450dp"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <Button
         android:id="@+id/edit_animal"
@@ -27,7 +28,9 @@
         android:text="Edit"
         android:textAllCaps="false"
         tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="450dp" />
+        tools:layout_editor_absoluteY="450dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/colorAccent"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

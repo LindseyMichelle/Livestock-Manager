@@ -9,7 +9,8 @@ import android.widget.Toast;
 
 // This activity is the input page that will record the basic
 // info about the animal to the database.
-public class AnimalInfo extends AppCompatActivity {
+public class AnimalInfo extends AppCompatActivity
+{
 
     Button button_add;
     String nameText;

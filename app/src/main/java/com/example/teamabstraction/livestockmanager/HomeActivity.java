@@ -32,7 +32,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         //Find the ListView resource
         animalListView = (ListView) findViewById(R.id.animalList);
-        animalListView.setClickable(true);
 
         //Creates and populates a list of animals (May need to import from a database later
         String[] animals = new String[]{"Sheep", "Goats", "Cows", "Chickens"};

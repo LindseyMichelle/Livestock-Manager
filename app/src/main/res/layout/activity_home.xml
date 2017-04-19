@@ -51,7 +51,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/add_animal_margin"
-        android:text="@string/add_animal"/>
+        android:text="@string/add_animal"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/colorAccent"/>
 
     <!--<Button-->
         <!--android:id="@+id/next_act"-->
@@ -73,6 +75,8 @@
         android:text="Delete"
         android:textAllCaps="false"
         app:layout_anchor="@+id/include3"
-        app:layout_anchorGravity="bottom|center_horizontal" />
+        app:layout_anchorGravity="bottom|center_horizontal"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/colorAccent"/>
 
 </android.support.design.widget.CoordinatorLayout>

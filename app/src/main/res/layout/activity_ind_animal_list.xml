@@ -23,7 +23,9 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/add_animal_margin"
         android:text="@string/add_animal"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/colorAccent"/>
 
 
 </android.support.design.widget.CoordinatorLayout>
