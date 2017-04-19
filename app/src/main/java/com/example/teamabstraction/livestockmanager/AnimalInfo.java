@@ -11,12 +11,8 @@ import android.widget.Toast;
 // info about the animal to the database.
 public class AnimalInfo extends AppCompatActivity {
 
+    DatabaseHelper mydb;
     Button button_add;
-    String nameText;
-    String breedText;
-    String genderText;
-    String nChildrenText;
-    String productText;
 
     EditText editName, editBreed, editGender, editNChildren, editProduct;
 
@@ -25,6 +21,7 @@ public class AnimalInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animal_info);
         getIntent();
+        mydb = new DatabaseHelper(this);
 
         editName = (EditText) findViewById(R.id.editTextName);
         editBreed = (EditText) findViewById(R.id.editTextBreed);
@@ -39,18 +36,15 @@ public class AnimalInfo extends AppCompatActivity {
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nameText = editName.getText().toString();
-                breedText = editBreed.getText().toString();
-                genderText = editGender.getText().toString();
-                nChildrenText = editNChildren.getText().toString();
-                productText = editProduct.getText().toString();
-
-                if (nameText != null && breedText != null && genderText != null
-                        && nChildrenText != null && productText != null) {
-                    Toast.makeText(AnimalInfo.this, "Data Inserted", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(AnimalInfo.this, "Data not Inserted", Toast.LENGTH_LONG).show();
-                }
+                boolean isinserted = mydb.insertData(editName.getText().toString(),
+                        editBreed.getText().toString(),
+                        editGender.getText().toString(),
+                        editNChildren.getText().toString(),
+                        editProduct.getText().toString());
+                if(isinserted = true)
+                    Toast.makeText(AnimalInfo.this, "Data Inserted",Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(AnimalInfo.this, "Data not Inserted",Toast.LENGTH_LONG).show();
                 finish();
             }
             // TODO: remove finish and go back to list of ind animal
