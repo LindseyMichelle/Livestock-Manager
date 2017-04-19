@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,18 +27,20 @@ public class IndAnimalList extends AppCompatActivity {
     private Button add_ind_animal;
     private ListView individualAnimalListView;
     private ArrayAdapter<String> individualAnimalListAdapter;
-
+    private TextView indvidualAnimalMessage;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ind_animal_list);
         getIntent();
 
+        indvidualAnimalMessage = (TextView) findViewById(R.id.indvidualAnimalMessage);
+        indvidualAnimalMessage.setText(R.string.indvidualAnimalMessage);
         mydb = new DatabaseHelper(this);
 
         individualAnimalListView = (ListView) findViewById(R.id.individualAnimalList);
-        individualAnimalListView.setClickable(true);
 
         //Creates and populates a list of animals (May need to import from a database later
         String[] indvidualAnimals = new String[]{"Betsie", "George", "Elizabeth", "Bartholemew"};

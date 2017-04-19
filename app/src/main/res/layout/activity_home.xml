@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.teamabstraction.livestockmanager.HomeActivity">
+    tools:context="com.example.teamabstraction.livestockmanager.HomeActivity"
+    app:theme = "@style/AppTheme"
+    >
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
-
-    <LinearLayout
+    <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="1">
 
-        <ListView
-            android:clickable="true"
+        <TextView
+            android:id = "@+id/displayWelcomeInformation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/list_padding_bottom"
-            android:id = "@+id/animalList"
-            android:textSize = "16sp">
-        </ListView>
+            android:layout_height="match_parent"
+            android:textSize = "16sp"
+            />
 
-    </LinearLayout>
+    </RelativeLayout>
+
+
+   <RelativeLayout
+       xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id = "@+id/animalList"
+        android:textSize = "16sp"
+        android:layout_margin="40sp"/>
+  </RelativeLayout>
+
 
     <include layout="@layout/content_home"
         android:id="@+id/include3" />
@@ -51,7 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/add_animal_margin"
-        android:text="@string/add_animal"/>
+        android:text="@string/add_animal"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/colorAccent"/>
 
     <!--<Button-->
         <!--android:id="@+id/next_act"-->
@@ -73,6 +76,8 @@
         android:text="Delete"
         android:textAllCaps="false"
         app:layout_anchor="@+id/include3"
-        app:layout_anchorGravity="bottom|center_horizontal" />
+        app:layout_anchorGravity="bottom|center_horizontal"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/colorAccent"/>
 
 </android.support.design.widget.CoordinatorLayout>

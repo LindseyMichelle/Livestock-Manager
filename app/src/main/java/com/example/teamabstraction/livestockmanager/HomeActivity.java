@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.content.DialogInterface;
 import android.widget.EditText;
 import android.text.InputType;
+import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -25,14 +26,17 @@ public class HomeActivity extends AppCompatActivity {
     private Button deleteAnimal;
     private String m_Text = "";
 
+    private TextView welcomeMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        welcomeMessage = (TextView) findViewById(R.id.displayWelcomeInformation);
+        welcomeMessage.setText(R.string.displayWelcomeInformation);
         //Find the ListView resource
         animalListView = (ListView) findViewById(R.id.animalList);
-        animalListView.setClickable(true);
 
         //Creates and populates a list of animals (May need to import from a database later
         String[] animals = new String[]{"Sheep", "Goats", "Cows", "Chickens"};

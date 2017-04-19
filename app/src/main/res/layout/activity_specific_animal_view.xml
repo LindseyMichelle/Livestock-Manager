@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.teamabstraction.livestockmanager.SpecificAnimalView">
+    tools:context="com.example.teamabstraction.livestockmanager.SpecificAnimalView"
+    app:theme="@style/AppTheme">
 
 
     <Button
@@ -16,7 +17,10 @@
         android:text="Delete"
         android:textAllCaps="false"
         tools:layout_editor_absoluteX="259dp"
-        tools:layout_editor_absoluteY="450dp" />
+        tools:layout_editor_absoluteY="450dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/colorAccent"
+        />
 
     <Button
         android:id="@+id/edit_animal"
@@ -27,7 +31,9 @@
         android:text="Edit"
         android:textAllCaps="false"
         tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="450dp" />
+        tools:layout_editor_absoluteY="450dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/colorAccent"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

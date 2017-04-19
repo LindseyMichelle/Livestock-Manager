@@ -5,7 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.teamabstraction.livestockmanager.IndAnimalList">
+    tools:context="com.example.teamabstraction.livestockmanager.IndAnimalList"
+    app:theme ="@style/AppTheme">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id = "@+id/indvidualAnimalMessage"/>
 
     <ListView
         android:clickable="true"
@@ -13,7 +19,8 @@
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/list_padding_bottom"
         android:id = "@+id/individualAnimalList"
-        android:textSize = "16sp">
+        android:textSize = "16sp"
+        android:layout_margin="40sp">
     </ListView>
 
     <Button
@@ -23,7 +30,9 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/add_animal_margin"
         android:text="@string/add_animal"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/colorAccent"/>
 
 
 </android.support.design.widget.CoordinatorLayout>
