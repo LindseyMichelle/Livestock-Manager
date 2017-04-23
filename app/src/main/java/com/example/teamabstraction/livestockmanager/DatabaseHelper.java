@@ -70,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Col_2, Breed);
         contentValues.put(Col_3, Gender);
         contentValues.put(Col_4, NChildren);
-        contentValues.put(Col_5, Product);`
+        contentValues.put(Col_5, Product);
 
         long result = db.insert(Table_NAME, null, contentValues);
         if (result == -1) {
