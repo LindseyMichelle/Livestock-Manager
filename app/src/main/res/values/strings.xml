@@ -26,6 +26,6 @@
     <string name="delete_animal_continue">Delete</string>
 
     <string name ="displayWelcomeInformation"> Welcome to your Livestock Manager. Here are the livestock you have on your ranch: </string>
-    <string name = "indvidualAnimalMessage"> Here is a list of all those animals: </string>
+    <string name = "individualAnimalMessage"> Here is a list of all those animals: </string>
 </resources>
 

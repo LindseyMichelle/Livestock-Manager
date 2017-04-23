@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-
+// TODO: Make sure all variables that are input are being stored in DB (line 64)
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "LivestockManager";
 
