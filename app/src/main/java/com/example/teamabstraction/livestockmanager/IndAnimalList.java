@@ -37,20 +37,20 @@ public class IndAnimalList extends AppCompatActivity {
         getIntent();
 
         indvidualAnimalMessage = (TextView) findViewById(R.id.indvidualAnimalMessage);
-        indvidualAnimalMessage.setText(R.string.indvidualAnimalMessage);
+        //indvidualAnimalMessage.setText(R.string.indvidualAnimalMessage);
         mydb = new DatabaseHelper(this);
 
         individualAnimalListView = (ListView) findViewById(R.id.individualAnimalList);
 
         //Creates and populates a list of animals (May need to import from a database later
-        String[] indvidualAnimals = new String[]{"Betsie", "George", "Elizabeth", "Bartholemew"};
-        final ArrayList<String> listOfIndvidualAnimalsArray = new ArrayList<String>();
-        listOfIndvidualAnimalsArray.addAll(Arrays.asList(indvidualAnimals));
-        individualAnimalListAdapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listOfIndvidualAnimalsArray);
+        //String[] indvidualAnimals = new String[]{"Betsie", "George", "Elizabeth", "Bartholemew"};
+        //final ArrayList<String> listOfIndvidualAnimalsArray = new ArrayList<String>();
+        //listOfIndvidualAnimalsArray.addAll(Arrays.asList(indvidualAnimals));
+        //individualAnimalListAdapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listOfIndvidualAnimalsArray);
 
-        //populateListView();
+        populateListView();
         //Set the ArrayAdapter as the ListView's Adapter
-        individualAnimalListView.setAdapter(individualAnimalListAdapter);
+        //individualAnimalListView.setAdapter(individualAnimalListAdapter);
 
 
         //This will display the animal information once the user clicks on it.
@@ -73,7 +73,7 @@ public class IndAnimalList extends AppCompatActivity {
             }
         });
     }
-/*
+
     private void populateListView() {
         Log.d(TAG, "populateListView: Displaying data in ListView");
 
@@ -83,9 +83,9 @@ public class IndAnimalList extends AppCompatActivity {
             listData.add(data.getString(0));
         }
 
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        ListAdapter adapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listData);
         individualAnimalListView.setAdapter(adapter);
     }
-    */
+
 }
 

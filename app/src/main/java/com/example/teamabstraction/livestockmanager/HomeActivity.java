@@ -28,6 +28,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private TextView welcomeMessage;
 
+    DatabaseHelper mydb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -37,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         welcomeMessage.setText(R.string.displayWelcomeInformation);
         //Find the ListView resource
         animalListView = (ListView) findViewById(R.id.animalList);
+        mydb = new DatabaseHelper(this);
 
         //Creates and populates a list of animals (May need to import from a database later
         String[] animals = new String[]{"Sheep", "Goats", "Cows", "Chickens"};

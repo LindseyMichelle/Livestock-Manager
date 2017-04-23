@@ -80,7 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAnimalData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from" + Table_NAME, null);
+        Cursor res = db.query(Table_NAME, new String[] {"Name"}, null, null, null, null, null);
         if (res != null)
             res.moveToFirst();
         return res;
