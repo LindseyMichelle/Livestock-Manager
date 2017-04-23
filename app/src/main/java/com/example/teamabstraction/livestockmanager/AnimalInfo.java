@@ -41,7 +41,8 @@ public class AnimalInfo extends AppCompatActivity
                         editBreed.getText().toString(),
                         editGender.getText().toString(),
                         editNChildren.getText().toString(),
-                        editProduct.getText().toString());
+                        editProduct.getText().toString(),
+                        GlobalVariables.getInstance().aType);
                 if(isinserted = true)
                     Toast.makeText(AnimalInfo.this, "Data Inserted",Toast.LENGTH_LONG).show();
                 else
