@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "LivestockManager";
 
+    // add date of purchase
     public static final String Table_NAME = "Animal";
     public static final String Col_1 = "Name";
     public static final String Col_2 = "Breed";
@@ -29,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String FAmount = "Amount in lbs";
     public static final String FCost = "Cost";
 
+    // need to delete table
     public static final String Table_Profits = "Profits";
     public static final String PFeed_Regiment = "Feed Regiment";
     public static final String PAnimal_Name = "Name";
@@ -68,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Col_2, Breed);
         contentValues.put(Col_3, Gender);
         contentValues.put(Col_4, NChildren);
-        contentValues.put(Col_5, Product);
+        contentValues.put(Col_5, Product);`
 
         long result = db.insert(Table_NAME, null, contentValues);
         if (result == -1) {
