@@ -27,6 +27,7 @@ public class SpecificAnimalView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specific_animal_view);
         getIntent();
+        mydb = new DatabaseHelper(this);
 
         // creates delete button to remove specific animal from DB
         deleteAnimal = (Button) findViewById(R.id.delete_animal);
@@ -95,17 +96,19 @@ public class SpecificAnimalView extends AppCompatActivity {
 
     // Function that shows alert dialog box
     private AlertDialog AskOption() {
+        final String name = GlobalVariables.getInstance().aName;
         AlertDialog deleteConfirmation =new AlertDialog.Builder(this)
                 //set message and title
                 .setTitle("Delete")
-                .setMessage("Are you sure you want to delete (animal_name)?")
+                .setMessage("Are you sure you want to delete " + name + "?" )
                         // TODO: insert animals name that will be deleted
 
                         .setPositiveButton ("Delete", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 //code to remove from database
                                 // TODO: insert code to remove animal from DB
-                                dialog.dismiss();
+                                mydb.deleteAnimal(name);
+                                finish();
                             }
 
                         })
