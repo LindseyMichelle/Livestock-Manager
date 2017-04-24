@@ -52,12 +52,13 @@ public class AnimalInfo extends AppCompatActivity
                         editPurchaseDate.getText().toString());
 
                 // TODO: call insert feed method
-                boolean feedInserted = mydb.insertFeedData(editFeedName.getText().toString(),
-                        editFeedAmount.getText().toString(),
-                        editFeedRegiment.getText().toString(),
-                        editFeedCost.getText().toString());
+//                boolean feedInserted = mydb.insertFeedData(editFeedName.getText().toString(),
+//                        editFeedAmount.getText().toString(),
+//                        editFeedRegiment.getText().toString(),
+//                        editFeedCost.getText().toString());
 
-                if(isinserted == true && feedInserted == true)
+                if(isinserted == true)
+//                        && feedInserted == true)
                     Toast.makeText(AnimalInfo.this, "Data Inserted",Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(AnimalInfo.this, "Data not Inserted",Toast.LENGTH_LONG).show();
