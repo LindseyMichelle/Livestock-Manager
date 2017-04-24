@@ -26,8 +26,7 @@ public class IndAnimalList extends AppCompatActivity {
     DatabaseHelper mydb;
     private Button add_ind_animal;
     private ListView individualAnimalListView;
-    private ArrayAdapter<String> individualAnimalListAdapter;
-    private TextView individualAnimalMessage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,20 +35,11 @@ public class IndAnimalList extends AppCompatActivity {
         setContentView(R.layout.activity_ind_animal_list);
         getIntent();
 
-        individualAnimalMessage = (TextView) findViewById(R.id.individualAnimalMessage);
         mydb = new DatabaseHelper(this);
 
         individualAnimalListView = (ListView) findViewById(R.id.individualAnimalList);
 
-        //Creates and populates a list of animals (May need to import from a database later
-        //String[] individualAnimals = new String[]{"Betsie", "George", "Elizabeth", "Bartholemew"};
-        //final ArrayList<String> listOfindividualAnimalsArray = new ArrayList<String>();
-        //listOfindividualAnimalsArray.addAll(Arrays.asList(individualAnimals));
-        //individualAnimalListAdapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listOfindividualAnimalsArray);
-
         populateListView();
-        //Set the ArrayAdapter as the ListView's Adapter
-        //individualAnimalListView.setAdapter(individualAnimalListAdapter);
 
 
         //This will display the animal information once the user clicks on it.
@@ -59,6 +49,7 @@ public class IndAnimalList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //This will be an intent to Jimmies ListView of the animal information.
                 Intent indAnimalIntent = new Intent(IndAnimalList.this, SpecificAnimalView.class);
+                GlobalVariables.getInstance().aName = (String)parent.getItemAtPosition(position);
                 startActivity(indAnimalIntent);
             }
         });
@@ -69,10 +60,14 @@ public class IndAnimalList extends AppCompatActivity {
             public void onClick(View v) {
                 Intent addAnimalIntent = new Intent(IndAnimalList.this, AnimalInfo.class);
                 startActivity(addAnimalIntent);
+
             }
         });
-    }
 
+
+
+    }
+// TODO: This still doesnt update after info inserted.
     private void populateListView() {
         Log.d(TAG, "populateListView: Displaying data in ListView");
 

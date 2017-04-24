@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.content.DialogInterface;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -20,6 +21,14 @@ public class SpecificAnimalView extends AppCompatActivity {
     private Button editAnimal;
     private Button markAsSold;
     private String s_text= "";
+    // These variables need to come from the DB;
+    public Integer purchasePrice = 100; // AnimalInfo: purchase price DB: animal (price)
+    public Integer sellingPrice = 0; // SpecificAnimalView: selling price; DB: profits(gain)
+    public Integer feedCostPerBag = 50; // AnimalInfo: Cost/Bag of Feed; DB: feed(cost)
+    public Integer feedPerDay = 1; // AnimalInfo: Feed Amount/Day; DB: feed(regiment)
+    public Integer feedLbsPerBag = 50; // AnimalInfo: Cost/Bag of Feed DB: feed(amount)
+    public Integer profit = 0; // TODO: needs to store in DB somewhere. Make new variable for Profit in profit table
+    public Integer daysOwned = 200; // TODO: AnimalInfo: Purchase Date (need to calculate): DB: Animal(purchase date)
     DatabaseHelper mydb;
 
     @Override
@@ -27,6 +36,10 @@ public class SpecificAnimalView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specific_animal_view);
         getIntent();
+        mydb = new DatabaseHelper(this);
+        TextView tv = (TextView)findViewById(R.id.specAnimalProfit);
+        tv.setText("Profit to date: " + calculateProfit(feedCostPerBag, feedLbsPerBag,
+                feedPerDay, purchasePrice, sellingPrice, daysOwned));
 
         // creates delete button to remove specific animal from DB
         deleteAnimal = (Button) findViewById(R.id.delete_animal);
@@ -35,6 +48,7 @@ public class SpecificAnimalView extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog deleteConfirmation = AskOption();
                 deleteConfirmation.show();
+                // TODO: insert code to delete from DB
             }
         });
 
@@ -92,20 +106,19 @@ public class SpecificAnimalView extends AppCompatActivity {
 
 
 
-
     // Function that shows alert dialog box
     private AlertDialog AskOption() {
+        final String name = GlobalVariables.getInstance().aName;
         AlertDialog deleteConfirmation =new AlertDialog.Builder(this)
                 //set message and title
                 .setTitle("Delete")
-                .setMessage("Are you sure you want to delete (animal_name)?")
+                .setMessage("Are you sure you want to delete " + name + "?" )
                         // TODO: insert animals name that will be deleted
 
                         .setPositiveButton ("Delete", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                //code to remove from database
-                                // TODO: insert code to remove animal from DB
-                                dialog.dismiss();
+                                mydb.deleteAnimal(name);
+                                finish();
                             }
 
                         })
@@ -120,6 +133,21 @@ public class SpecificAnimalView extends AppCompatActivity {
                         .create();
         return deleteConfirmation;
 
+    }
+
+
+
+
+    public int calculateProfit (int feedCostPerBag, int feedLbsPerBag, int feedPoundsPerDay,
+                                 int purchasePrice, int sellingPrice, int daysOwned) {
+
+        int costPerPound = feedCostPerBag/feedLbsPerBag;
+        int feedCostPerDay = feedPoundsPerDay*costPerPound;
+        int totalRunningFeedCost = daysOwned*feedCostPerDay;
+
+        profit = -1*(totalRunningFeedCost+purchasePrice)+sellingPrice;
+
+        return profit;
     }
 
 }

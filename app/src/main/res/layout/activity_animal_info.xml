@@ -191,7 +191,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
-                android:text="Feed Regiment"
+                android:text="Feed Amount/Day\n(lbs)"
                 android:textSize="8pt" />
 
             <EditText
@@ -207,7 +207,7 @@
         // Feed Amount
         <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_row="7"
             android:gravity="center">
 
@@ -216,7 +216,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
-                android:text="Feed Amount\n(in lbs)"
+                android:text="Pounds/Bag of Feed"
                 android:textSize="8pt" />
 
             <EditText
@@ -241,7 +241,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
-                android:text="Feed Cost\n (Yearly)"
+                android:text="Cost/Bag of Feed"
                 android:textSize="8pt" />
 
             <EditText

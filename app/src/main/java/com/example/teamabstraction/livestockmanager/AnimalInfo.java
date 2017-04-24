@@ -49,16 +49,18 @@ public class AnimalInfo extends AppCompatActivity
                         editGender.getText().toString(),
                         editNChildren.getText().toString(),
                         editProduct.getText().toString(),
-                        editPurchaseDate.getText().toString());
+//                        editPurchaseDate.getText().toString(),
+                        GlobalVariables.getInstance().aType);
 
-                // TODO: call insert feed method
+                // TODO: call insert feed method- not working
 //                boolean feedInserted = mydb.insertFeedData(editFeedName.getText().toString(),
 //                        editFeedAmount.getText().toString(),
 //                        editFeedRegiment.getText().toString(),
 //                        editFeedCost.getText().toString());
 
+
+
                 if(isinserted == true)
-//                        && feedInserted == true)
                     Toast.makeText(AnimalInfo.this, "Data Inserted",Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(AnimalInfo.this, "Data not Inserted",Toast.LENGTH_LONG).show();
