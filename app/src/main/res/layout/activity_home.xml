@@ -33,17 +33,21 @@
        xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id = "@+id/animalList"
         android:textSize = "16sp"
-        android:layout_margin="40sp"/>
+        android:layout_marginTop="40sp"
+        android:layout_marginLeft="40sp"
+        android:layout_marginRight="40sp"
+        android:layout_marginBottom="80sp" />
+
   </RelativeLayout>
 
 
-    <include layout="@layout/content_home"
-        android:id="@+id/include3" />
+
 
     <Button
         android:id="@+id/add_animal"
@@ -61,7 +65,7 @@
         android:id="@+id/delete_animal_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|left"
+        android:layout_gravity="bottom|center"
         android:layout_margin="@dimen/add_animal_margin"
         android:text="Delete"
         android:textAllCaps="false"
@@ -69,5 +73,17 @@
         app:layout_anchorGravity="bottom|center_horizontal"
         style="?android:attr/borderlessButtonStyle"
         android:textColor="@color/colorAccent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/totalProfit"
+        android:layout_gravity="bottom|start"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="@dimen/add_animal_margin"/>
+
+    <include
+        android:id="@+id/include3"
+        layout="@layout/content_home" />
 
 </android.support.design.widget.CoordinatorLayout>
