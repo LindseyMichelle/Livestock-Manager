@@ -35,7 +35,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private TextView welcomeMessage;
 
-
     DatabaseHelper mydb;
 
     @Override
@@ -48,6 +47,7 @@ public class HomeActivity extends AppCompatActivity {
         welcomeMessage.setText(R.string.displayWelcomeInformation);
         //Find the ListView resource
         animalListView = (ListView) findViewById(R.id.animalList);
+        mydb = new DatabaseHelper(this);
 
 
         //Creates and populates a list of animals (May need to import from a database later
@@ -154,7 +154,9 @@ public class HomeActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         //code to remove from database
                         // TODO: insert code to remove animal from DB
+                        mydb.deleteAnimalType(m_Text);
                         dialog.dismiss();
+                        recreate();
                     }
 
                 })

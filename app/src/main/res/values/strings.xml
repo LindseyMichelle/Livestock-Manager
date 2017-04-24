@@ -21,11 +21,13 @@
     <string name="add_animal">Add Animal</string>
     <string name="dialog_title">Add type of animal</string>
     <string name="delete_dialog_title">Delete type of animal</string>
+    <string name="sold_dialog_title">Enter Selling Price</string>
     <string name="add_animal_continue">Add</string>
+    <string name="sold">Sold</string>
     <string name="cancel">Cancel</string>
     <string name="delete_animal_continue">Delete</string>
 
     <string name ="displayWelcomeInformation"> Welcome to your Livestock Manager. Here are the livestock you have on your ranch: </string>
-    <string name = "indvidualAnimalMessage"> Here is a list of all those animals: </string>
+    <string name = "individualAnimalMessage"> Here is a list of all those animals: </string>
 </resources>
 

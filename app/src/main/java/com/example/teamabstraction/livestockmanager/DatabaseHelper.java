@@ -7,10 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.icu.text.DisplayContext;
 
-
+// TODO: Make sure all variables that are input are being stored in DB (line 64)
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "LivestockManager";
 
+    // add date of purchase
     public static final String Table_NAME = "Animal";
     public static final String Col_1 = "Name";
     public static final String Col_2 = "Breed";
@@ -35,6 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String FAmount = "Amount in lbs";
     public static final String FCost = "Cost";
 
+    // need to delete table
     public static final String Table_Profits = "Profits";
     public static final String PFeed_Regiment = "Feed Regiment";
     public static final String PAnimal_Name = "Name";
@@ -87,6 +89,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void deleteAnimal(String Name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Table_NAME, Col_1 + "=?", new String[] {Name});
+        return;
+    }
+
     public boolean insertAnimalType(String AnimalType){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -100,10 +108,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void deleteAnimalType(String type){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Table_Type, TType + "=?", new String[] {type});
+        db.delete(Table_NAME, Col_12 + "=?", new String[] {type});
+        return;
+    }
+
     public Cursor getAnimalData() {
         SQLiteDatabase db = this.getWritableDatabase();
+
         String type = GlobalVariables.getInstance().aType;
         Cursor res = db.query(Table_NAME, new String[] {"Name"}, Col_12 +"=?", new String[] {type}, null, null,  null);
+
         if (res != null)
             res.moveToFirst();
         return res;

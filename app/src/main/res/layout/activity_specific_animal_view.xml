@@ -9,31 +9,41 @@
 
 
     <Button
-        android:id="@+id/delete_animal"
-        android:layout_width="85dp"
-        android:layout_height="45dp"
-        android:layout_margin="@dimen/add_animal_margin"
-        android:layout_gravity="bottom"
-        android:text="Delete"
-        android:textAllCaps="false"
-        tools:layout_editor_absoluteX="259dp"
-        tools:layout_editor_absoluteY="450dp"
-        style="?android:attr/borderlessButtonStyle"
-        android:textColor="@color/colorAccent"
-        />
-
-    <Button
         android:id="@+id/edit_animal"
         android:layout_width="85dp"
         android:layout_height="45dp"
         android:layout_margin="@dimen/add_animal_margin"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="bottom|center"
         android:text="Edit"
         android:textAllCaps="false"
         tools:layout_editor_absoluteX="164dp"
         tools:layout_editor_absoluteY="450dp"
         style="?android:attr/borderlessButtonStyle"
         android:textColor="@color/colorAccent"/>
+
+    <Button
+        android:id="@+id/mark_as_sold"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/add_animal_margin"
+        android:text="Mark As Sold"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/delete_animal"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="85dp"
+        android:layout_height="45dp"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="@dimen/add_animal_margin"
+        android:text="Delete"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent" />
+
+
 
 
 </android.support.design.widget.CoordinatorLayout>

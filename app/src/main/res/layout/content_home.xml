@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
                 android:inputType="text" />
-
         </android.support.design.widget.TextInputLayout>
     </FrameLayout>
+
 </android.support.constraint.ConstraintLayout>

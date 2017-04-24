@@ -27,7 +27,7 @@ public class IndAnimalList extends AppCompatActivity {
     private Button add_ind_animal;
     private ListView individualAnimalListView;
     private ArrayAdapter<String> individualAnimalListAdapter;
-    private TextView indvidualAnimalMessage;
+    private TextView individualAnimalMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,17 +36,21 @@ public class IndAnimalList extends AppCompatActivity {
         setContentView(R.layout.activity_ind_animal_list);
         getIntent();
 
-        indvidualAnimalMessage = (TextView) findViewById(R.id.indvidualAnimalMessage);
+
+        //indvidualAnimalMessage = (TextView) findViewById(R.id.indvidualAnimalMessage);
         //indvidualAnimalMessage.setText(R.string.indvidualAnimalMessage);
+
         mydb = new DatabaseHelper(this);
 
         individualAnimalListView = (ListView) findViewById(R.id.individualAnimalList);
 
         //Creates and populates a list of animals (May need to import from a database later
+
         //String[] indvidualAnimals = new String[]{"Betsie", "George", "Elizabeth", "Bartholemew"};
         //final ArrayList<String> listOfIndvidualAnimalsArray = new ArrayList<String>();
         //listOfIndvidualAnimalsArray.addAll(Arrays.asList(indvidualAnimals));
         //individualAnimalListAdapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listOfIndvidualAnimalsArray);
+
 
         populateListView();
         //Set the ArrayAdapter as the ListView's Adapter
@@ -60,6 +64,7 @@ public class IndAnimalList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //This will be an intent to Jimmies ListView of the animal information.
                 Intent indAnimalIntent = new Intent(IndAnimalList.this, SpecificAnimalView.class);
+                GlobalVariables.getInstance().aName = (String)parent.getItemAtPosition(position);
                 startActivity(indAnimalIntent);
             }
         });

@@ -10,6 +10,7 @@ public class GlobalVariables {
     private static GlobalVariables mInstance= null;
 
     public String aType;
+    public String aName;
 
     protected GlobalVariables(){}
 
