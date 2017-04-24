@@ -43,6 +43,15 @@
         android:textAllCaps="false"
         android:textColor="@color/colorAccent" />
 
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:id="@+id/specAnimalProfit"
+        android:textAllCaps="false"
+        android:layout_gravity="bottom|start"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="@dimen/content_padding_normal"/>
+
 
 
 

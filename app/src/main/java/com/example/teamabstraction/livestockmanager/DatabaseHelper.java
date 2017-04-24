@@ -18,25 +18,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String Col_3 = "Gender";
     public static final String Col_4 = "NChildren";
     public static final String Col_5 = "Product";
-    public static final String Col_6 = "FName";
-    public static final String Col_7 = "Feed Regiment";
-    public static final String Col_8 = "FAmount";
-    public static final String Col_9 = "FCost";
-    public static final String Col_10 = "PPrice";
-    public static final String Col_11 = "PDate";
-    public static final String Col_12 = "AType";
+    public static final String Col_6 = "Purchase Date";
+    public static final String Col_7 = "FName";
+    public static final String Col_8 = "Feed Regiment";
+    public static final String Col_9 = "FAmount";
+    public static final String Col_10 = "FCost";
+    public static final String Col_11 = "PPrice";
+    public static final String Col_12 = "PDate";
+    public static final String Col_13 = "AType";
 
     public static final String Table_Type = "AnimalType";
     public static final String TType = "AnimalType";
     public static final String TNumber = "NumberOf";
 
+
     public static final String Table_Feed = "Feed";
-    public static final String FFeed_Regiment = "Feed Regiment";
-    public static final String FFeed_Name = "Name";
+    public static final String FRegiment = "Feed Regiment";
+    public static final String FName = "Name";
     public static final String FAmount = "Amount in lbs";
     public static final String FCost = "Cost";
 
-    // need to delete table
     public static final String Table_Profits = "Profits";
     public static final String PFeed_Regiment = "Feed Regiment";
     public static final String PAnimal_Name = "Name";
@@ -62,16 +63,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + Table_NAME + "(Name TEXT, Breed TEXT, Gender TEXT, NChildren TEXT, Product TEXT, AType TEXT)");
         db.execSQL("create table " + Table_Type + "(AnimalType TEXT, NumberOf TEXT)");
+        db.execSQL("create table " + Table_Feed + "(FRegiment TEXT, FName TEXT, FAmount TEXT, FCost)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("Drop Table If Exists " + Table_NAME);
+        db.execSQL("Drop Table If Exists " + Table_Feed);
         db.execSQL("Drop Table If Exists " + Table_Type);
         onCreate(db);
     }
 
-    public boolean insertData(String Name, String Breed, String Gender, String NChildren, String Product, String AType) {
+
+
+    public boolean insertAnimalData(String Name, String Breed, String Gender, String NChildren,
+                                    String Product,
+//                                    String PurchaseDate,
+                                    String AType) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Col_1, Name);
@@ -79,7 +87,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Col_3, Gender);
         contentValues.put(Col_4, NChildren);
         contentValues.put(Col_5, Product);
-        contentValues.put(Col_12, AType);
+//        contentValues.put(Col_6, PurchaseDate);
+        contentValues.put(Col_13, AType); // TODO: should be its own function inserttype
 
         long result = db.insert(Table_NAME, null, contentValues);
         if (result == -1) {
@@ -88,6 +97,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+
+// TODO: this isn't working. Find out what table they need to go into. Use col_7? or feed_table?
+//    public boolean insertFeedData(String FeedName, String FeedAmount, String FeedRegiment, String FeedCost) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(Col_7, FeedName);
+//        contentValues.put(Col_8, FeedAmount);
+//        contentValues.put(Col_9, FeedRegiment);
+//        contentValues.put(Col_10, FeedCost);
+//
+//        long result = db.insert(Table_Feed, null, contentValues);
+//        if (result == -1) {
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
 
     public void deleteAnimal(String Name){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -108,23 +134,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
+    //TODO: insert feed method similar to method above
+
     public void deleteAnimalType(String type){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Table_Type, TType + "=?", new String[] {type});
-        db.delete(Table_NAME, Col_12 + "=?", new String[] {type});
+        db.delete(Table_NAME, Col_13 + "=?", new String[] {type});
         return;
     }
+
 
     public Cursor getAnimalData() {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String type = GlobalVariables.getInstance().aType;
-        Cursor res = db.query(Table_NAME, new String[] {"Name"}, Col_12 +"=?", new String[] {type}, null, null,  null);
+        Cursor res = db.query(Table_NAME, new String[] {"Name"}, Col_13 +"=?", new String[] {type}, null, null,  null);
 
         if (res != null)
             res.moveToFirst();
         return res;
     }
+
 
     public Cursor getAnimalTypes() {
         SQLiteDatabase db2 = this.getWritableDatabase();
@@ -133,5 +164,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             res2.moveToFirst();
         return res2;
     }
-
 }

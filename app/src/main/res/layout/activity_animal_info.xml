@@ -9,20 +9,20 @@
     tools:context="com.example.teamabstraction.livestockmanager.AnimalInfo">
 
     <GridLayout
-        android:layout_width="313dp"
+        android:layout_width="325dp"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
         android:columnCount="2"
         android:columnWidth="500dp"
         android:orientation="vertical"
-        android:rowCount="11"
+        android:rowCount="12"
         android:stretchMode="columnWidth">
 
         // input fields for name
 
         <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_marginTop="@dimen/add_animal_margin"
             android:layout_row="0"
             android:gravity="center">
@@ -49,7 +49,7 @@
 
         <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_row="1"
             android:gravity="center">
 
@@ -74,7 +74,7 @@
 
         <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_row="2"
             android:gravity="center">
 
@@ -101,7 +101,7 @@
 
         <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_row="3"
             android:gravity="center">
 
@@ -118,7 +118,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number"
+                android:text="" />
 
         </LinearLayout>
 
@@ -126,7 +127,7 @@
 
         <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_row="4"
             android:gravity="center">
 
@@ -147,11 +148,12 @@
                 android:text="" />
         </LinearLayout>
 
+
         // input for Feed Name
 
         <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_row="5"
             android:gravity="center">
 
@@ -179,7 +181,7 @@
 
         <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_row="6"
             android:gravity="center">
 
@@ -189,7 +191,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
-                android:text="Feed Regiment"
+                android:text="Feed Amount/Day\n(lbs)"
                 android:textSize="8pt" />
 
             <EditText
@@ -202,9 +204,10 @@
         </LinearLayout>
 
 
+        // Feed Amount
         <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_row="7"
             android:gravity="center">
 
@@ -213,7 +216,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
-                android:text="Feed Amount"
+                android:text="Pounds/Bag of Feed"
                 android:textSize="8pt" />
 
             <EditText
@@ -221,11 +224,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:text="" />
         </LinearLayout>
 
 
+        // Feed Cost
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="45dp"
@@ -237,7 +241,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
-                android:text="Feed Cost"
+                android:text="Cost/Bag of Feed"
                 android:textSize="8pt" />
 
             <EditText
@@ -245,16 +249,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:text="" />
         </LinearLayout>
 
 
         // input for Purchase Price
-
         <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_row="9"
             android:gravity="center">
 
@@ -271,7 +274,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="number"
+                android:text="" />
+        </LinearLayout>
+
+        // input for Purchase Date
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:layout_row="10"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textViewPurchaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:text="Purchase Date\n (dd/mm/yyyy)"
+                android:textSize="8pt" />
+
+            <EditText
+                android:id="@+id/editTextPurchaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date"
                 android:text="" />
         </LinearLayout>
 
@@ -282,7 +309,7 @@
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_marginBottom="53dp"
-            android:layout_row="10"
+            android:layout_row="11"
             android:text="Add Data"
             android:textColor="@color/colorAccent"/>
 

@@ -26,8 +26,7 @@ public class IndAnimalList extends AppCompatActivity {
     DatabaseHelper mydb;
     private Button add_ind_animal;
     private ListView individualAnimalListView;
-    private ArrayAdapter<String> individualAnimalListAdapter;
-    private TextView individualAnimalMessage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,25 +35,11 @@ public class IndAnimalList extends AppCompatActivity {
         setContentView(R.layout.activity_ind_animal_list);
         getIntent();
 
-
-        //indvidualAnimalMessage = (TextView) findViewById(R.id.indvidualAnimalMessage);
-        //indvidualAnimalMessage.setText(R.string.indvidualAnimalMessage);
-
         mydb = new DatabaseHelper(this);
 
         individualAnimalListView = (ListView) findViewById(R.id.individualAnimalList);
 
-        //Creates and populates a list of animals (May need to import from a database later
-
-        //String[] indvidualAnimals = new String[]{"Betsie", "George", "Elizabeth", "Bartholemew"};
-        //final ArrayList<String> listOfIndvidualAnimalsArray = new ArrayList<String>();
-        //listOfIndvidualAnimalsArray.addAll(Arrays.asList(indvidualAnimals));
-        //individualAnimalListAdapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listOfIndvidualAnimalsArray);
-
-
         populateListView();
-        //Set the ArrayAdapter as the ListView's Adapter
-        //individualAnimalListView.setAdapter(individualAnimalListAdapter);
 
 
         //This will display the animal information once the user clicks on it.
@@ -82,7 +67,7 @@ public class IndAnimalList extends AppCompatActivity {
 
 
     }
-
+// TODO: This still doesnt update after info inserted.
     private void populateListView() {
         Log.d(TAG, "populateListView: Displaying data in ListView");
 

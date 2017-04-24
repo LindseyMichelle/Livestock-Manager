@@ -95,7 +95,6 @@ public class HomeActivity extends AppCompatActivity {
                         else
                             Toast.makeText(HomeActivity.this, "Data not Inserted",Toast.LENGTH_LONG).show();
                         recreate();
-                        //finish();
                         // TODO: m_text to database
                     }
                 });
