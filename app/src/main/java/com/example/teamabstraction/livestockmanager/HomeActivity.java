@@ -49,8 +49,11 @@ public class HomeActivity extends AppCompatActivity {
         animalListView = (ListView) findViewById(R.id.animalList);
         mydb = new DatabaseHelper(this);
 
+        TextView profitView = (TextView)findViewById(R.id.totalProfit);
+        profitView.setText("Profit to date: $" + totalProfit());
 
-        //Creates and populates a list of animals (May need to import from a database later
+
+                //Creates and populates a list of animals (May need to import from a database later
         //String[] animals = new String[]{"Sheep", "Goats", "Cows", "Chickens"};
         //final ArrayList<String> listOfAnimalsArray = new ArrayList<String>();
         //listOfAnimalsArray.addAll(Arrays.asList(animals));
@@ -170,6 +173,13 @@ public class HomeActivity extends AppCompatActivity {
                 .create();
         return deleteConfirmation;
 
+    }
+
+    private Integer totalProfit () {
+        Integer totalProfit = 2000;
+        // need to redo the profit table for the variables used (add column for
+        // indAnimalProfit and then sum() from that column.
+        return totalProfit;
     }
 
     private void populateListView() {

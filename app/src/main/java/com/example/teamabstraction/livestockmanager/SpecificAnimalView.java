@@ -38,7 +38,7 @@ public class SpecificAnimalView extends AppCompatActivity {
         getIntent();
         mydb = new DatabaseHelper(this);
         TextView tv = (TextView)findViewById(R.id.specAnimalProfit);
-        tv.setText("Profit to date: " + calculateProfit(feedCostPerBag, feedLbsPerBag,
+        tv.setText("Profit to date: $" + calculateProfit(feedCostPerBag, feedLbsPerBag,
                 feedPerDay, purchasePrice, sellingPrice, daysOwned));
 
         // creates delete button to remove specific animal from DB
@@ -77,7 +77,7 @@ public class SpecificAnimalView extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         s_text = input.getText().toString();
-                        Toast.makeText(SpecificAnimalView.this, "Selling Price Inserted", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SpecificAnimalView.this, "Selling Price Recorded", Toast.LENGTH_LONG).show();
                         // TODO: s_text to database- should this be an int? Gray out item in list
                         // http://stackoverflow.com/questions/1246613/android-list-with-grayed-out-items
 
