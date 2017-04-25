@@ -149,7 +149,7 @@ public class HomeActivity extends AppCompatActivity {
         AlertDialog deleteConfirmation =new AlertDialog.Builder(this)
                 //set message and title
                 .setTitle("Delete")
-                .setMessage("Are you sure you want to delete the animal type: " + m_Text + "?")
+                .setMessage("Are you sure you want to delete the animal type " + m_Text + "?")
                 // TODO: insert animals name that will be deleted
 
                 .setPositiveButton ("Delete", new DialogInterface.OnClickListener() {
