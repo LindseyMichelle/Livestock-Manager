@@ -89,7 +89,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(Col_1, Name);
         contentValues.put(Col_2, Breed);
-        contentValues.put(Col_3, Gender);k
+        contentValues.put(Col_3, Gender);
         contentValues.put(Col_4, NChildren);
         contentValues.put(Col_5, Product);
         contentValues.put(Col_15, Purchase_Price);
