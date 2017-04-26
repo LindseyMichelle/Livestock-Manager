@@ -15,7 +15,7 @@ public class AnimalInfo extends AppCompatActivity
     DatabaseHelper mydb;
     Button button_add;
 
-    EditText editName, editBreed, editGender, editNChildren, editProduct,
+    EditText editName, editBreed, editGender, editNChildren, editProduct, editPurchasePrice,
             editPurchaseDate, editFeedName, editFeedAmount, editFeedRegiment, editFeedCost;
 
     @Override
@@ -30,7 +30,8 @@ public class AnimalInfo extends AppCompatActivity
         editGender = (EditText) findViewById(R.id.editTextGender);
         editNChildren = (EditText) findViewById(R.id.editTextNChildren);
         editProduct = (EditText) findViewById(R.id.editTextProduct);
-        editPurchaseDate = (EditText) findViewById(R.id.editTextPurchaseDate);
+        editPurchasePrice = (EditText) findViewById(R.id.editTextPurchasePrice);
+//        editPurchaseDate = (EditText) findViewById(R.id.editTextPurchaseDate);
         editFeedName = (EditText) findViewById(R.id.editTextFeedName);
         editFeedAmount = (EditText) findViewById(R.id.editTextFeedAmount);
         editFeedRegiment = (EditText) findViewById(R.id.editTextFeedRegiment);
@@ -49,19 +50,20 @@ public class AnimalInfo extends AppCompatActivity
                         editGender.getText().toString(),
                         editNChildren.getText().toString(),
                         editProduct.getText().toString(),
+                        editPurchasePrice.getText().toString(),
 //                        editPurchaseDate.getText().toString(),
                         GlobalVariables.getInstance().aType);
 
                 // TODO: call insert feed method- not working
-                boolean feedInserted = mydb.insertFeedData(editFeedName.getText().toString(),
-                        editFeedAmount.getText().toString(),
-                        editFeedRegiment.getText().toString(),
-                        editFeedCost.getText().toString(),
-                        GlobalVariables.getInstance().aName);
+//                boolean feedInserted = mydb.insertFeedData(editFeedName.getText().toString(),
+//                        editFeedAmount.getText().toString(),
+//                        editFeedRegiment.getText().toString(),
+//                        editFeedCost.getText().toString(),
+//                        GlobalVariables.getInstance().aName);
 
 
 
-                if(isinserted == true && feedInserted == true)
+                if(isinserted == true)
                     Toast.makeText(AnimalInfo.this, "Data Inserted",Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(AnimalInfo.this, "Data not Inserted",Toast.LENGTH_LONG).show();
