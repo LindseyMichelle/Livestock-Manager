@@ -53,14 +53,15 @@ public class AnimalInfo extends AppCompatActivity
                         GlobalVariables.getInstance().aType);
 
                 // TODO: call insert feed method- not working
-//                boolean feedInserted = mydb.insertFeedData(editFeedName.getText().toString(),
-//                        editFeedAmount.getText().toString(),
-//                        editFeedRegiment.getText().toString(),
-//                        editFeedCost.getText().toString());
+                boolean feedInserted = mydb.insertFeedData(editFeedName.getText().toString(),
+                        editFeedAmount.getText().toString(),
+                        editFeedRegiment.getText().toString(),
+                        editFeedCost.getText().toString(),
+                        GlobalVariables.getInstance().aName);
 
 
 
-                if(isinserted == true)
+                if(isinserted == true && feedInserted == true)
                     Toast.makeText(AnimalInfo.this, "Data Inserted",Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(AnimalInfo.this, "Data not Inserted",Toast.LENGTH_LONG).show();

@@ -18,9 +18,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String Col_3 = "Gender";
     public static final String Col_4 = "NChildren";
     public static final String Col_5 = "Product";
-    public static final String Col_6 = "Purchase Date";
+    public static final String Col_6 = "Purchase_Date";
     public static final String Col_7 = "FName";
-    public static final String Col_8 = "Feed Regiment";
+    public static final String Col_8 = "Feed_Regiment";
     public static final String Col_9 = "FAmount";
     public static final String Col_10 = "FCost";
     public static final String Col_11 = "PPrice";
@@ -33,10 +33,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public static final String Table_Feed = "Feed";
-    public static final String FRegiment = "Feed Regiment";
+    public static final String FRegiment = "Feed_Regiment";
     public static final String FName = "Name";
-    public static final String FAmount = "Amount in lbs";
+    public static final String FAmount = "Amount_in_lbs";
     public static final String FCost = "Cost";
+    public static final String FAnimal = "Animal";
 
     public static final String Table_Profits = "Profits";
     public static final String PFeed_Regiment = "Feed Regiment";
@@ -63,7 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + Table_NAME + "(Name TEXT, Breed TEXT, Gender TEXT, NChildren TEXT, Product TEXT, AType TEXT)");
         db.execSQL("create table " + Table_Type + "(AnimalType TEXT, NumberOf TEXT)");
-        db.execSQL("create table " + Table_Feed + "(FRegiment TEXT, FName TEXT, FAmount TEXT, FCost)");
+        db.execSQL("create table " + Table_Feed + "(FRegiment TEXT, FName TEXT, FAmount TEXT, FCost TEXT), FAnimal TEXT");
     }
 
     @Override
@@ -99,21 +100,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 // TODO: this isn't working. Find out what table they need to go into. Use col_7? or feed_table?
-//    public boolean insertFeedData(String FeedName, String FeedAmount, String FeedRegiment, String FeedCost) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(Col_7, FeedName);
-//        contentValues.put(Col_8, FeedAmount);
-//        contentValues.put(Col_9, FeedRegiment);
-//        contentValues.put(Col_10, FeedCost);
-//
-//        long result = db.insert(Table_Feed, null, contentValues);
-//        if (result == -1) {
-//            return false;
-//        } else {
-//            return true;
-//        }
-//    }
+    public boolean insertFeedData(String FeedName, String FeedAmount, String FeedRegiment, String FeedCost, String AName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FName, FeedName);
+        contentValues.put(FAmount, FeedAmount);
+        contentValues.put(FRegiment, FeedRegiment);
+        contentValues.put(FCost, FeedCost);
+        contentValues.put(FAnimal, AName);
+
+        long result = db.insert(Table_Feed, null, contentValues);
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public void deleteAnimal(String Name){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -150,6 +152,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String type = GlobalVariables.getInstance().aType;
         Cursor res = db.query(Table_NAME, new String[] {"Name"}, Col_13 +"=?", new String[] {type}, null, null,  null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
+
+    public Cursor getFeedDataCost(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String name = GlobalVariables.getInstance().aName;
+        Cursor res = db.query(Table_Feed, new String[] {"Cost"}, FAnimal + "=?", new String[] {name}, null, null, null);
 
         if (res != null)
             res.moveToFirst();

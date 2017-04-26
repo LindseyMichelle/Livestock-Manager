@@ -271,7 +271,7 @@
 
 
 
-        // fields for feed amount/day
+        // fields for feed amount/day use for feed cost
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="40dp"
@@ -280,14 +280,14 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/textFeedAmountDisplay"
+                android:id="@+id/textFeedCostDisplay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
-                android:text="Feed Amount/Day: "
+                android:text="Feed Cost: "
                 android:textSize="8pt" />
             <TextView
-                android:id="@+id/textFeedAmountDisplayDB"
+                android:id="@+id/textFeedCostDisplayDB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"

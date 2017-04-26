@@ -1,5 +1,6 @@
 package com.example.teamabstraction.livestockmanager;
 
+import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,6 +41,12 @@ public class SpecificAnimalView extends AppCompatActivity {
         TextView tv = (TextView)findViewById(R.id.specAnimalProfit);
         tv.setText("Profit to date: $" + calculateProfit(feedCostPerBag, feedLbsPerBag,
                 feedPerDay, purchasePrice, sellingPrice, daysOwned));
+
+        /*
+        TextView tcost = (TextView)findViewById(R.id.textFeedCostDisplay);
+        Cursor Fcost = mydb.getFeedDataCost();
+        tcost.setText(Fcost.getString(3));
+*/
 
         // creates delete button to remove specific animal from DB
         deleteAnimal = (Button) findViewById(R.id.delete_animal);
