@@ -149,12 +149,62 @@
         </LinearLayout>
 
 
+        // input for Purchase Price
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_row="5"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textPurchasePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:text="Purchase Price"
+                android:textSize="8pt" />
+
+            <EditText
+                android:id="@+id/editTextPurchasePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:text="" />
+        </LinearLayout>
+
+        // input for Purchase Date
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:layout_row="6"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textViewPurchaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:text="Purchase Date\n (dd/mm/yyyy)"
+                android:textSize="8pt" />
+
+            <EditText
+                android:id="@+id/editTextPurchaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date"
+                android:text="" />
+        </LinearLayout>
+
+
+
         // input for Feed Name
 
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:layout_row="5"
+            android:layout_row="7"
             android:gravity="center">
 
             <TextView
@@ -182,7 +232,7 @@
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:layout_row="6"
+            android:layout_row="8"
             android:gravity="center">
 
 
@@ -208,7 +258,7 @@
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:layout_row="7"
+            android:layout_row="9"
             android:gravity="center">
 
             <TextView
@@ -233,7 +283,7 @@
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="45dp"
-            android:layout_row="8"
+            android:layout_row="10"
             android:gravity="center">
 
             <TextView
@@ -250,55 +300,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number"
-                android:text="" />
-        </LinearLayout>
-
-
-        // input for Purchase Price
-        <LinearLayout
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_row="9"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/textPurchasePrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill_horizontal"
-                android:text="Purchase Price"
-                android:textSize="8pt" />
-
-            <EditText
-                android:id="@+id/editTextPurchasePrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:text="" />
-        </LinearLayout>
-
-        // input for Purchase Date
-        <LinearLayout
-            android:layout_width="250dp"
-            android:layout_height="45dp"
-            android:layout_row="10"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/textViewPurchaseDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill_horizontal"
-                android:text="Purchase Date\n (dd/mm/yyyy)"
-                android:textSize="8pt" />
-
-            <EditText
-                android:id="@+id/editTextPurchaseDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="date"
                 android:text="" />
         </LinearLayout>
 
