@@ -3,9 +3,11 @@ package com.example.teamabstraction.livestockmanager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.icu.text.DisplayContext;
+import android.util.Log;
 
 // TODO: Make sure all variables that are input are being stored in DB (line 64)
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -18,13 +20,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String Col_3 = "Gender";
     public static final String Col_4 = "NChildren";
     public static final String Col_5 = "Product";
-    public static final String Col_6 = "Purchase Date";
-    public static final String Col_7 = "FName";
-    public static final String Col_8 = "Feed Regiment";
-    public static final String Col_9 = "FAmount";
-    public static final String Col_10 = "FCost";
-    public static final String Col_11 = "PPrice";
-    public static final String Col_14 = "SellingPrice";
+    public static final String Col_6 = "PurchaseDate";
+//    public static final String Col_7 = "FName";
+//    public static final String Col_8 = "Feed Regiment";
+//    public static final String Col_9 = "FAmount";
+//    public static final String Col_10 = "FCost";
+    public static final String Col_11 = "PurchasePrice";
+    public static final String Col_14 = "SellingPrice"; // use in specAnimalView
     public static final String Col_13 = "AType";
 
     public static final String Table_Type = "AnimalType";
@@ -33,10 +35,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public static final String Table_Feed = "Feed";
-    public static final String FRegiment = "Feed Regiment"; //Feed Amount/Day
-    public static final String FName = "FeedName";
-    public static final String FAmount = "Amount in lbs"; // Pounds/Bag of Feed
-    public static final String FCost = "Cost"; // Cost/bag of feed
+    public static final String Col_20 = "FRegiment"; //Feed Amount/Day
+    public static final String Col_21 = "FName";
+    public static final String Col_22 = "FAmount"; // Pounds/Bag of Feed
+    public static final String Col_23 = "FCost"; // Cost/bag of feed
 
     public static final String Table_Profits = "Profits";
     public static final String PFeed_Regiment = "Feed Regiment";
@@ -66,7 +68,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " Product TEXT, PurchasePrice TEXT, PurchaseDate TEXT, SellingPrice TEXT, AType TEXT)");
         db.execSQL("create table " + Table_Type + "(AnimalType TEXT, NumberOf TEXT)");
         db.execSQL("create table " + Table_Feed + "(FRegiment TEXT, FName TEXT, FAmount TEXT, FCost TEXT)");
-        db.execSQL("create table " + Table_Profits + "(AName TEXT, ProfitToDate TEXT, Cost TEXT, SellingPrice TEXT, DaysOwned TEXT)");
+        db.execSQL("create table " + Table_Profits + "(AName TEXT, ProfitToDate TEXT, Cost TEXT, DaysOwned TEXT)");
 
     }
 
@@ -95,29 +97,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Col_11, PurchasePrice);
         contentValues.put(Col_13, AType); // TODO: should be its own function inserttype
 
-        long result = db.insert(Table_NAME, null, contentValues);
-        if (result == -1) {
+        try {
+            long result = db.insertOrThrow(Table_NAME, null, contentValues);
+        } catch(SQLException exception) {
+            Log.v("SQL Exception", exception.getLocalizedMessage());
             return false;
-        } else {
-            return true;
         }
+
+        return true;
     }
 
-// TODO: this isn't working. Find out what table they need to go into. Use col_7? or feed_table?
-    public boolean insertFeedData(String FeedName, String FeedAmount, String FeedRegiment, String FeedCost) {
+// TODO: this isn't working.
+    public boolean insertFeedData(String FName, String FAmount, String FRegiment, String FCost) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(FRegiment, FeedName);
-        contentValues.put(FName, FeedAmount);
-        contentValues.put(FAmount, FeedRegiment);
-        contentValues.put(FCost, FeedCost);
+        contentValues.put(Col_20, FName);
+        contentValues.put(Col_21, FRegiment); // amount/day
+        contentValues.put(Col_22, FAmount); // lbs/bag
+        contentValues.put(Col_23, FCost); // cost/bag
 
-        long result = db.insert(Table_Feed, null, contentValues);
-        if (result == -1) {
+        try {
+            long result = db.insertOrThrow(Table_Feed, null, contentValues);
+        } catch(SQLException exception) {
+            Log.v("SQL Exception", exception.getLocalizedMessage());
             return false;
-        } else {
-            return true;
         }
+
+        return true;
     }
 
     public void deleteAnimal(String Name){
