@@ -16,7 +16,7 @@ public class AnimalInfo extends AppCompatActivity
     Button button_add;
 
     EditText editName, editBreed, editGender, editNChildren, editProduct,
-            editPurchaseDate, editFeedName, editFeedAmount, editFeedRegiment, editFeedCost;
+            editPurchaseDate, editPurchasePrice, editFeedName, editFeedAmount, editFeedRegiment, editFeedCost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class AnimalInfo extends AppCompatActivity
         editNChildren = (EditText) findViewById(R.id.editTextNChildren);
         editProduct = (EditText) findViewById(R.id.editTextProduct);
         editPurchaseDate = (EditText) findViewById(R.id.editTextPurchaseDate);
+        editPurchasePrice = (EditText) findViewById(R.id.editTextPurchasePrice);
         editFeedName = (EditText) findViewById(R.id.editTextFeedName);
         editFeedAmount = (EditText) findViewById(R.id.editTextFeedAmount);
         editFeedRegiment = (EditText) findViewById(R.id.editTextFeedRegiment);
@@ -49,7 +50,8 @@ public class AnimalInfo extends AppCompatActivity
                         editGender.getText().toString(),
                         editNChildren.getText().toString(),
                         editProduct.getText().toString(),
-//                        editPurchaseDate.getText().toString(),
+                        editPurchaseDate.getText().toString(),
+                        editPurchasePrice.getText().toString(),
                         GlobalVariables.getInstance().aType);
 
                 // TODO: call insert feed method- not working

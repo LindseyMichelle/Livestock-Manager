@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String Col_9 = "FAmount";
     public static final String Col_10 = "FCost";
     public static final String Col_11 = "PPrice";
-    public static final String Col_12 = "PDate";
+    public static final String Col_14 = "SellingPrice";
     public static final String Col_13 = "AType";
 
     public static final String Table_Type = "AnimalType";
@@ -33,16 +33,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public static final String Table_Feed = "Feed";
-    public static final String FRegiment = "Feed Regiment";
-    public static final String FName = "Name";
-    public static final String FAmount = "Amount in lbs";
-    public static final String FCost = "Cost";
+    public static final String FRegiment = "Feed Regiment"; //Feed Amount/Day
+    public static final String FName = "FeedName";
+    public static final String FAmount = "Amount in lbs"; // Pounds/Bag of Feed
+    public static final String FCost = "Cost"; // Cost/bag of feed
 
     public static final String Table_Profits = "Profits";
     public static final String PFeed_Regiment = "Feed Regiment";
-    public static final String PAnimal_Name = "Name";
-    public static final String PGain = "Gain";
-    public static final String PCost = "Cost";
+    public static final String PAnimal_Name = "AName";
+    public static final String PProfit = "ProfitToDate";
+    public static final String PCost = "Cost"; //cost to date
+    public static final String PDaysOwned = "DaysOwned"; //calculated # of days owned
 
     public static final String Table_Field = "Field";
     public static final String FLocation = "Location";
@@ -61,9 +62,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + Table_NAME + "(Name TEXT, Breed TEXT, Gender TEXT, NChildren TEXT, Product TEXT, AType TEXT)");
+        db.execSQL("create table " + Table_NAME + "(Name TEXT, Breed TEXT, Gender TEXT, NChildren TEXT," +
+                " Product TEXT, PurchasePrice TEXT, PurchaseDate TEXT, SellingPrice TEXT, AType TEXT)");
         db.execSQL("create table " + Table_Type + "(AnimalType TEXT, NumberOf TEXT)");
-        db.execSQL("create table " + Table_Feed + "(FRegiment TEXT, FName TEXT, FAmount TEXT, FCost)");
+        db.execSQL("create table " + Table_Feed + "(FRegiment TEXT, FName TEXT, FAmount TEXT, FCost TEXT)");
+        db.execSQL("create table " + Table_Profits + "(AName TEXT, ProfitToDate TEXT, Cost TEXT, SellingPrice TEXT, DaysOwned TEXT)");
+
     }
 
     @Override
@@ -71,14 +75,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("Drop Table If Exists " + Table_NAME);
         db.execSQL("Drop Table If Exists " + Table_Feed);
         db.execSQL("Drop Table If Exists " + Table_Type);
+        db.execSQL("Drop Table If Exists " + Table_Profits);
         onCreate(db);
     }
 
 
 
     public boolean insertAnimalData(String Name, String Breed, String Gender, String NChildren,
-                                    String Product,
-//                                    String PurchaseDate,
+                                    String Product, String PurchaseDate, String PurchasePrice,
                                     String AType) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -87,7 +91,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Col_3, Gender);
         contentValues.put(Col_4, NChildren);
         contentValues.put(Col_5, Product);
-//        contentValues.put(Col_6, PurchaseDate);
+        contentValues.put(Col_6, PurchaseDate);
+        contentValues.put(Col_11, PurchasePrice);
         contentValues.put(Col_13, AType); // TODO: should be its own function inserttype
 
         long result = db.insert(Table_NAME, null, contentValues);
@@ -99,21 +104,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 // TODO: this isn't working. Find out what table they need to go into. Use col_7? or feed_table?
-//    public boolean insertFeedData(String FeedName, String FeedAmount, String FeedRegiment, String FeedCost) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(Col_7, FeedName);
-//        contentValues.put(Col_8, FeedAmount);
-//        contentValues.put(Col_9, FeedRegiment);
-//        contentValues.put(Col_10, FeedCost);
-//
-//        long result = db.insert(Table_Feed, null, contentValues);
-//        if (result == -1) {
-//            return false;
-//        } else {
-//            return true;
-//        }
-//    }
+    public boolean insertFeedData(String FeedName, String FeedAmount, String FeedRegiment, String FeedCost) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FRegiment, FeedName);
+        contentValues.put(FName, FeedAmount);
+        contentValues.put(FAmount, FeedRegiment);
+        contentValues.put(FCost, FeedCost);
+
+        long result = db.insert(Table_Feed, null, contentValues);
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public void deleteAnimal(String Name){
         SQLiteDatabase db = this.getWritableDatabase();
