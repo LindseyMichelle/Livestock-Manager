@@ -66,7 +66,8 @@ public class AnimalInfo extends AppCompatActivity
                 boolean feedInserted = mydb.insertFeedData(editFeedName.getText().toString(),
                         editFeedAmount.getText().toString(),
                         editFeedRegiment.getText().toString(),
-                        editFeedCost.getText().toString());
+                        editFeedCost.getText().toString(),
+                        GlobalVariables.getInstance().aName);
 
 
 

@@ -47,7 +47,7 @@ public class IndAnimalList extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //This will be an intent to Jimmies ListView of the animal information.
+                //Intent to ListView of the animal information.
                 Intent indAnimalIntent = new Intent(IndAnimalList.this, SpecificAnimalView.class);
                 GlobalVariables.getInstance().aName = (String)parent.getItemAtPosition(position);
                 startActivity(indAnimalIntent);
@@ -67,7 +67,7 @@ public class IndAnimalList extends AppCompatActivity {
 
 
     }
-// TODO: This still doesnt update after info inserted.
+// TODO: This still doesn't update after info inserted.
     private void populateListView() {
         Log.d(TAG, "populateListView: Displaying data in ListView");
 

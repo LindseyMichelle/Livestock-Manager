@@ -93,12 +93,12 @@ public class HomeActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         m_Text = input.getText().toString();
                         boolean isinserted = mydb.insertAnimalType(m_Text);
-                        if(isinserted = true)
+                        if(isinserted)
                             Toast.makeText(HomeActivity.this, "Data Inserted",Toast.LENGTH_LONG).show();
                         else
                             Toast.makeText(HomeActivity.this, "Data not Inserted",Toast.LENGTH_LONG).show();
                         recreate();
-                        // TODO: m_text to database
+
                     }
                 });
                 builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -131,7 +131,6 @@ public class HomeActivity extends AppCompatActivity {
                         m_Text = input.getText().toString();
                         AlertDialog deleteConfirmation = AskOption();
                         deleteConfirmation.show();
-                        // TODO: m_text to database
                     }
                 });
                 builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

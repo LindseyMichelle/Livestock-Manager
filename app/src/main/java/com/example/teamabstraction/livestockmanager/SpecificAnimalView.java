@@ -1,5 +1,6 @@
 package com.example.teamabstraction.livestockmanager;
 
+import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.content.DialogInterface;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Date;
 
 
 // This activity is will display information about specific animal
@@ -38,8 +41,8 @@ public class SpecificAnimalView extends AppCompatActivity {
         getIntent();
         mydb = new DatabaseHelper(this);
         TextView tv = (TextView)findViewById(R.id.specAnimalProfit);
-        tv.setText("Profit to date: $" + calculateProfit(feedCostPerBag, feedLbsPerBag,
-                feedPerDay, purchasePrice, sellingPrice, daysOwned));
+        tv.setText(R.string.profit_to_date + calculateProfit(feedCostPerBag, feedLbsPerBag, feedPerDay,
+                purchasePrice, sellingPrice, daysOwned));
 
         // creates delete button to remove specific animal from DB
         deleteAnimal = (Button) findViewById(R.id.delete_animal);
@@ -76,19 +79,16 @@ public class SpecificAnimalView extends AppCompatActivity {
                 builder.setPositiveButton(R.string.sold, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        s_text = input.getText().toString();
-                        Toast.makeText(SpecificAnimalView.this, "Selling Price Recorded", Toast.LENGTH_LONG).show();
-                        // TODO: s_text to database- should this be an int? Gray out item in list
+                        boolean isinserted = mydb.insertSellingPrice(input.getText().toString(), GlobalVariables.getInstance().aType);
+
+                        if(isinserted) {
+                            Toast.makeText(SpecificAnimalView.this, "Selling Price Recorded", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(SpecificAnimalView.this, "Selling Price Not Recorded", Toast.LENGTH_LONG).show();
+                        }
+                        // TODO: Gray out item in list
                         // http://stackoverflow.com/questions/1246613/android-list-with-grayed-out-items
 
-
-//                        boolean isinserted = mydb.insertData(input.getText().toString()); TODO: insert into correct table
-//                        if(isinserted = true) {
-//                            Toast.makeText(SpecificAnimalView.this, "Selling Price Inserted", Toast.LENGTH_LONG).show();
-//                        } else {
-//                            Toast.makeText(SpecificAnimalView.this, "Data not Inserted", Toast.LENGTH_LONG).show();
-//                            finish();
-//
                     }
                 });
 
@@ -132,11 +132,41 @@ public class SpecificAnimalView extends AppCompatActivity {
                         })
                         .create();
         return deleteConfirmation;
-
     }
 
 
 
+
+//    public int calculateProfit (int sellingPrice, int daysOwned) {
+//
+//        Cursor data = mydb.getAnimalPurchaseInfo(); // pulling animal info from DB
+//
+//        String tempPurchasePrice = data.getString(0); //extracting string
+//        int purchasePrice = Integer.parseInt(tempPurchasePrice); // converting to int
+
+//         String tempPurchaseDate = data.getString(1);
+//         Date purchaseDate = DateUtil.stringToDate(tempPurchaseDate);
+//
+//
+//        Cursor dataFeed = mydb.getAnimalFeedInfo(); //pulling feed data from DB
+//
+//        String tempFeedCost = dataFeed.getString(0);
+//        int feedCostPerBag = Integer.parseInt(tempFeedCost);
+//
+//        String tempFeedAmount = dataFeed.getString(1);
+//        int feedLbsPerBag = Integer.parseInt(tempFeedAmount);
+//
+//        String tempFeedRegiment = dataFeed.getString(2);
+//        int feedLbsPerDay = Integer.parseInt(tempFeedRegiment);
+//
+//        int costPerPound = feedCostPerBag/feedLbsPerBag;
+//        int feedCostPerDay = feedLbsPerDay*costPerPound;
+//        int totalRunningFeedCost = daysOwned*feedCostPerDay;
+//
+//        profit = -1*(totalRunningFeedCost+purchasePrice)+sellingPrice;
+//
+//        return profit;
+//    }
 
     public int calculateProfit (int feedCostPerBag, int feedLbsPerBag, int feedPoundsPerDay,
                                  int purchasePrice, int sellingPrice, int daysOwned) {
