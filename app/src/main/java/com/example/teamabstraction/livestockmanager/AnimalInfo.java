@@ -63,10 +63,12 @@ public class AnimalInfo extends AppCompatActivity
 
 
                 // TODO: call insert feed method- not working
-                boolean feedInserted = mydb.insertFeedData(editFeedName.getText().toString(),
+                boolean feedInserted = mydb.insertFeedData(
+                        editFeedName.getText().toString(),
                         editFeedAmount.getText().toString(),
                         editFeedRegiment.getText().toString(),
-                        editFeedCost.getText().toString());
+                        editFeedCost.getText().toString(),
+                        GlobalVariables.getInstance().aName);
 
 
 

@@ -1,5 +1,6 @@
 package com.example.teamabstraction.livestockmanager;
 
+import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.content.DialogInterface;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Date;
 
 
 // This activity is will display information about specific animal
@@ -22,12 +25,12 @@ public class SpecificAnimalView extends AppCompatActivity {
     private Button markAsSold;
     private String s_text= "";
     // These variables need to come from the DB;
-    public Integer purchasePrice = 100; // AnimalInfo: purchase price DB: animal (price)
+    public Integer purchasePrice = 200; // AnimalInfo: purchase price DB: animal (price)
     public Integer sellingPrice = 0; // SpecificAnimalView: selling price; DB: profits(gain)
     public Integer feedCostPerBag = 50; // AnimalInfo: Cost/Bag of Feed; DB: feed(cost)
     public Integer feedPerDay = 1; // AnimalInfo: Feed Amount/Day; DB: feed(regiment)
     public Integer feedLbsPerBag = 50; // AnimalInfo: Cost/Bag of Feed DB: feed(amount)
-    public Integer profit = 0; // TODO: needs to store in DB somewhere. Make new variable for Profit in profit table
+    public Integer profit; // TODO: needs to store in DB somewhere. Make new variable for Profit in profit table
     public Integer daysOwned = 200; // TODO: AnimalInfo: Purchase Date (need to calculate): DB: Animal(purchase date)
     DatabaseHelper mydb;
 
@@ -38,8 +41,8 @@ public class SpecificAnimalView extends AppCompatActivity {
         getIntent();
         mydb = new DatabaseHelper(this);
         TextView tv = (TextView)findViewById(R.id.specAnimalProfit);
-        tv.setText("Profit to date: $" + calculateProfit(feedCostPerBag, feedLbsPerBag,
-                feedPerDay, purchasePrice, sellingPrice, daysOwned));
+        tv.setText(R.string.profit_to_date + calculateProfit(feedCostPerBag, feedLbsPerBag, feedPerDay,
+        purchasePrice, sellingPrice, daysOwned));
 
         // creates delete button to remove specific animal from DB
         deleteAnimal = (Button) findViewById(R.id.delete_animal);
@@ -48,7 +51,6 @@ public class SpecificAnimalView extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog deleteConfirmation = AskOption();
                 deleteConfirmation.show();
-                // TODO: insert code to delete from DB
             }
         });
 
@@ -113,7 +115,6 @@ public class SpecificAnimalView extends AppCompatActivity {
                 //set message and title
                 .setTitle("Delete")
                 .setMessage("Are you sure you want to delete " + name + "?" )
-                        // TODO: insert animals name that will be deleted
 
                         .setPositiveButton ("Delete", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -135,6 +136,38 @@ public class SpecificAnimalView extends AppCompatActivity {
 
     }
 
+
+
+//    public int calculateProfit (int sellingPrice, int daysOwned) {
+//
+        Cursor data = mydb.getAnimalPurchaseInfo(); // pulling animal info from DB
+
+//        String tempPurchasePrice = data.getString(0); //extracting string
+//        int purchasePrice = Integer.parseInt(tempPurchasePrice); // converting to int
+
+        String tempPurchaseDate = data.getString(1);
+        Date purchaseDate = DateUtil.stringToDate(tempPurchaseDate);
+//
+//
+//        Cursor dataFeed = mydb.getAnimalFeedInfo(); //pulling feed data from DB
+//
+//        String tempFeedCost = dataFeed.getString(0);
+//        int feedCostPerBag = Integer.parseInt(tempFeedCost);
+//
+//        String tempFeedAmount = dataFeed.getString(1);
+//        int feedLbsPerBag = Integer.parseInt(tempFeedAmount);
+//
+//        String tempFeedRegiment = dataFeed.getString(2);
+//        int feedLbsPerDay = Integer.parseInt(tempFeedRegiment);
+//
+//        int costPerPound = feedCostPerBag/feedLbsPerBag;
+//        int feedCostPerDay = feedLbsPerDay*costPerPound;
+//        int totalRunningFeedCost = daysOwned*feedCostPerDay;
+//
+//        profit = -1*(totalRunningFeedCost+purchasePrice)+sellingPrice;
+//
+//        return profit;
+//    }
 
 
 

@@ -67,7 +67,7 @@ public class IndAnimalList extends AppCompatActivity {
 
 
     }
-// TODO: This still doesnt update after info inserted.
+// TODO: This still doesn't update after info inserted.
     private void populateListView() {
         Log.d(TAG, "populateListView: Displaying data in ListView");
 

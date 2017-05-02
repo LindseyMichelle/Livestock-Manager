@@ -26,6 +26,7 @@
     <string name="sold">Sold</string>
     <string name="cancel">Cancel</string>
     <string name="delete_animal_continue">Delete</string>
+    <string name="profit_to_date">Profit to date: $</string>
 
     <string name ="displayWelcomeInformation"> Welcome to your Livestock Manager. Here are the livestock you have on your ranch: </string>
     <string name = "individualAnimalMessage"> Here is a list of all those animals: </string>
