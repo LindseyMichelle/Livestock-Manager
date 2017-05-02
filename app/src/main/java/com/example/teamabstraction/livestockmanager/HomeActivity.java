@@ -48,6 +48,8 @@ public class HomeActivity extends AppCompatActivity {
         //Find the ListView resource
         animalListView = (ListView) findViewById(R.id.animalList);
         mydb = new DatabaseHelper(this);
+        GlobalVariables.getInstance().edit = false;
+        GlobalVariables.getInstance().change = false;
 
         TextView profitView = (TextView)findViewById(R.id.totalProfit);
         profitView.setText("Profit to date: $" + totalProfit());

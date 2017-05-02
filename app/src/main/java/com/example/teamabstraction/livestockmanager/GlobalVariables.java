@@ -11,6 +11,8 @@ public class GlobalVariables {
 
     public String aType;
     public String aName;
+    public boolean edit;
+    public boolean change;
 
     protected GlobalVariables(){}
 
