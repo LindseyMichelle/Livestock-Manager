@@ -134,7 +134,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Col_14, SellingPrice);
-        contentValues.put(Col_1, GlobalVariables.getInstance().aName);
 
         try {
             long result = db.insertOrThrow(Table_NAME, null, contentValues);
@@ -210,7 +209,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    //TODO: insert feed method similar to method above
 
     public void deleteAnimalType(String type){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -290,6 +288,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String name = GlobalVariables.getInstance().aName;
         Cursor res = db.query(Table_NAME, new String[] {"PurchasePrice"}, Col_1 +"=?", new String[] {name}, null, null,  null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
+
+    public Cursor getAnimalSellingPrice() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String name = GlobalVariables.getInstance().aName;
+        Cursor res = db.query(Table_NAME, new String[] {"SellingPrice"}, Col_1 +"=?", new String[] {name}, null, null,  null);
 
         if (res != null)
             res.moveToFirst();

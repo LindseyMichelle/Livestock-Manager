@@ -25,7 +25,7 @@ public class SpecificAnimalView extends AppCompatActivity {
     private String s_text= "";
     // These variables need to come from the DB;
     public Integer purchasePrice = 100; // AnimalInfo: purchase price DB: animal (price)
-    public Integer sellingPrice = 0; // SpecificAnimalView: selling price; DB: profits(gain)
+    public Integer salePrice = 0; // SpecificAnimalView: selling price; DB: profits(gain)
     public Integer feedCostPerBag = 50; // AnimalInfo: Cost/Bag of Feed; DB: feed(cost)
     public Integer feedPerDay = 1; // AnimalInfo: Feed Amount/Day; DB: feed(regiment)
     public Integer feedLbsPerBag = 50; // AnimalInfo: Cost/Bag of Feed DB: feed(amount)
@@ -47,22 +47,29 @@ public class SpecificAnimalView extends AppCompatActivity {
         TextView product = (TextView)findViewById(R.id.textProductDisplayDB);
         TextView purchaseDate = (TextView)findViewById(R.id.textPurchaseDateDisplayDB);
         TextView purchaseprice = (TextView)findViewById(R.id.textPurchasePriceDB);
+        TextView sellingprice = (TextView)findViewById(R.id.textSellingPriceDisplayDB); // newly added for selling price
         TextView feedname = (TextView)findViewById(R.id.textFeedNameDisplayDB);
         TextView feedregiment = (TextView)findViewById(R.id.textFeedAmountDisplayDB);
         TextView feedamount = (TextView)findViewById(R.id.textFeedPoundsDisplayDB);
         TextView feedcost = (TextView)findViewById(R.id.textFeedCostDisplayDB);
+
+
         Cursor br = mydb.getAnimalBreed();
         Cursor gen = mydb.getAnimalGender();
         Cursor nC = mydb.getAnimalNChildren();
         Cursor pr = mydb.getAnimalProduct();
         Cursor pd = mydb.getAnimalPurchaseDate();
         Cursor pp = mydb.getAnimalPurchasePrice();
+        Cursor sp = mydb.getAnimalSellingPrice(); // newly added for selling price
         Cursor fn = mydb.getAnimalFeedName();
         Cursor fr = mydb.getAnimalFeedRegiment();
         Cursor fa = mydb.getAnimalFeedAmount();
         Cursor fc = mydb.getAnimalFeedCost();
+
+
         tv.setText("Profit to date: $" + calculateProfit(feedCostPerBag, feedLbsPerBag,
-                feedPerDay, purchasePrice, sellingPrice, daysOwned));
+                feedPerDay, purchasePrice, salePrice, daysOwned));
+
         aName.setText(GlobalVariables.getInstance().aName);
         breed.setText(br.getString(0));
         gender.setText(gen.getString(0));
@@ -70,10 +77,12 @@ public class SpecificAnimalView extends AppCompatActivity {
         product.setText(pr.getString(0));
         purchaseDate.setText(pd.getString(0));
         purchaseprice.setText(pp.getString(0));
+        sellingprice.setText(sp.getString(0)); // newly added for selling price
         feedname.setText(fn.getString(0));
         feedregiment.setText(fr.getString(0));
         feedamount.setText(fa.getString(0));
         feedcost.setText(fc.getString(0));
+
 
         // creates delete button to remove specific animal from DB
         deleteAnimal = (Button) findViewById(R.id.delete_animal);
@@ -105,27 +114,26 @@ public class SpecificAnimalView extends AppCompatActivity {
                 builder.setTitle(R.string.sold_dialog_title);
 
                 // Set up the input
-                final EditText input = new EditText(SpecificAnimalView.this);
-                input.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-                builder.setView(input);
+                final EditText spInput = new EditText(SpecificAnimalView.this);
+                spInput.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                builder.setView(spInput);
 
                 // Set up the buttons
                 builder.setPositiveButton(R.string.sold, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        s_text = input.getText().toString();
-                        Toast.makeText(SpecificAnimalView.this, "Selling Price Recorded", Toast.LENGTH_LONG).show();
-                        // TODO: s_text to database- should this be an int? Gray out item in list
+                        s_text = spInput.getText().toString();
+                        // TODO: Gray out item in list
                         // http://stackoverflow.com/questions/1246613/android-list-with-grayed-out-items
 
+                    boolean priceInserted = mydb.insertSellingPrice(spInput.getText().toString());
+                    if(priceInserted) {
+                        Toast.makeText(SpecificAnimalView.this, "Selling Price Recorded", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(SpecificAnimalView.this, "Selling Price Not Recorded", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
 
-//                        boolean isinserted = mydb.insertData(input.getText().toString()); TODO: insert into correct table
-//                        if(isinserted = true) {
-//                            Toast.makeText(SpecificAnimalView.this, "Selling Price Inserted", Toast.LENGTH_LONG).show();
-//                        } else {
-//                            Toast.makeText(SpecificAnimalView.this, "Data not Inserted", Toast.LENGTH_LONG).show();
-//                            finish();
-//
                     }
                 });
 
