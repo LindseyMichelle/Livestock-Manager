@@ -1,5 +1,7 @@
 package com.example.teamabstraction.livestockmanager;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,8 +40,40 @@ public class SpecificAnimalView extends AppCompatActivity {
         getIntent();
         mydb = new DatabaseHelper(this);
         TextView tv = (TextView)findViewById(R.id.specAnimalProfit);
+        TextView aName = (TextView)findViewById(R.id.textAnimalNameDB);
+        TextView breed = (TextView)findViewById(R.id.textBreedDisplayDB);
+        TextView gender = (TextView)findViewById(R.id.textGenderDisplayDB);
+        TextView nChildren = (TextView)findViewById(R.id.textChildrenDisplayDB);
+        TextView product = (TextView)findViewById(R.id.textProductDisplayDB);
+        TextView purchaseDate = (TextView)findViewById(R.id.textPurchaseDateDisplayDB);
+        TextView purchaseprice = (TextView)findViewById(R.id.textPurchasePriceDB);
+        TextView feedname = (TextView)findViewById(R.id.textFeedNameDisplayDB);
+        TextView feedregiment = (TextView)findViewById(R.id.textFeedAmountDisplayDB);
+        TextView feedamount = (TextView)findViewById(R.id.textFeedPoundsDisplayDB);
+        TextView feedcost = (TextView)findViewById(R.id.textFeedCostDisplayDB);
+        Cursor br = mydb.getAnimalBreed();
+        Cursor gen = mydb.getAnimalGender();
+        Cursor nC = mydb.getAnimalNChildren();
+        Cursor pr = mydb.getAnimalProduct();
+        Cursor pd = mydb.getAnimalPurchaseDate();
+        Cursor pp = mydb.getAnimalPurchasePrice();
+        Cursor fn = mydb.getAnimalFeedName();
+        Cursor fr = mydb.getAnimalFeedRegiment();
+        Cursor fa = mydb.getAnimalFeedAmount();
+        Cursor fc = mydb.getAnimalFeedCost();
         tv.setText("Profit to date: $" + calculateProfit(feedCostPerBag, feedLbsPerBag,
                 feedPerDay, purchasePrice, sellingPrice, daysOwned));
+        aName.setText(GlobalVariables.getInstance().aName);
+        breed.setText(br.getString(0));
+        gender.setText(gen.getString(0));
+        nChildren.setText(nC.getString(0));
+        product.setText(pr.getString(0));
+        purchaseDate.setText(pd.getString(0));
+        purchaseprice.setText(pp.getString(0));
+        feedname.setText(fn.getString(0));
+        feedregiment.setText(fr.getString(0));
+        feedamount.setText(fa.getString(0));
+        feedcost.setText(fc.getString(0));
 
         // creates delete button to remove specific animal from DB
         deleteAnimal = (Button) findViewById(R.id.delete_animal);
@@ -57,6 +91,9 @@ public class SpecificAnimalView extends AppCompatActivity {
         editAnimal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GlobalVariables.getInstance().edit = true;
+                Intent editAnimalIntent = new Intent(SpecificAnimalView.this, AnimalInfo.class);
+                startActivity(editAnimalIntent);
             // TODO: Create intent that passes all values back to the AnimalInfo activity
             }
         });
@@ -104,6 +141,15 @@ public class SpecificAnimalView extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(GlobalVariables.getInstance().edit == true) {
+            GlobalVariables.getInstance().edit = false;
+            recreate();
+        }
+    }
+
 
 
     // Function that shows alert dialog box
@@ -118,6 +164,7 @@ public class SpecificAnimalView extends AppCompatActivity {
                         .setPositiveButton ("Delete", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 mydb.deleteAnimal(name);
+                                GlobalVariables.getInstance().change = true;
                                 finish();
                             }
 

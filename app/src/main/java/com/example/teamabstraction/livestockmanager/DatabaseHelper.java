@@ -38,7 +38,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String Col_20 = "FRegiment"; //Feed Amount/Day
     public static final String Col_21 = "FName";
     public static final String Col_22 = "FAmount"; // Pounds/Bag of Feed
-    public static final String Col_23 = "FCost"; // Cost/bag of feed
+    public static final String Col_23 = "FCost";// Cost/bag of feed
+    public static final String Col_24 = "Animal"; // match feed info with an animal
 
     public static final String Table_Profits = "Profits";
     public static final String PFeed_Regiment = "Feed Regiment";
@@ -67,7 +68,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("create table " + Table_NAME + "(Name TEXT, Breed TEXT, Gender TEXT, NChildren TEXT," +
                 " Product TEXT, PurchasePrice TEXT, PurchaseDate TEXT, SellingPrice TEXT, AType TEXT)");
         db.execSQL("create table " + Table_Type + "(AnimalType TEXT, NumberOf TEXT)");
-        db.execSQL("create table " + Table_Feed + "(FRegiment TEXT, FName TEXT, FAmount TEXT, FCost TEXT)");
+        db.execSQL("create table " + Table_Feed + "(FRegiment TEXT, FName TEXT, FAmount TEXT, FCost TEXT, Animal TEXT)");
         db.execSQL("create table " + Table_Profits + "(AName TEXT, ProfitToDate TEXT, Cost TEXT, DaysOwned TEXT)");
 
     }
@@ -97,6 +98,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Col_11, PurchasePrice);
         contentValues.put(Col_13, AType); // TODO: should be its own function inserttype
 
+        GlobalVariables.getInstance().aName = Name;
+
         try {
             long result = db.insertOrThrow(Table_NAME, null, contentValues);
         } catch(SQLException exception) {
@@ -115,6 +118,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Col_21, FRegiment); // amount/day
         contentValues.put(Col_22, FAmount); // lbs/bag
         contentValues.put(Col_23, FCost); // cost/bag
+        contentValues.put(Col_24, GlobalVariables.getInstance().aName);
 
         try {
             long result = db.insertOrThrow(Table_Feed, null, contentValues);
@@ -124,6 +128,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return true;
+    }
+
+    public boolean updateAnimalTable(String Name, String Breed, String Gender, String NChildren,
+                                String Product, String PurchaseDate, String PurchasePrice,
+                                String AType){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Col_1, Name);
+        contentValues.put(Col_2, Breed);
+        contentValues.put(Col_3, Gender);
+        contentValues.put(Col_4, NChildren);
+        contentValues.put(Col_5, Product);
+        contentValues.put(Col_6, PurchaseDate);
+        contentValues.put(Col_11, PurchasePrice);
+        contentValues.put(Col_13, AType);
+
+        GlobalVariables.getInstance().aName = Name;
+
+        long result = db.update(Table_NAME, contentValues, Col_1 + " =?", new String[]{Name});
+
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean updateFeedData(String FName, String FAmount, String FRegiment, String FCost) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Col_20, FName);
+        contentValues.put(Col_21, FRegiment); // amount/day
+        contentValues.put(Col_22, FAmount); // lbs/bag
+        contentValues.put(Col_23, FCost); // cost/bag
+        contentValues.put(Col_24, GlobalVariables.getInstance().aName);
+
+        long result = db.update(Table_Feed, contentValues, Col_24 + " =?", new String[]{GlobalVariables.getInstance().aName});
+
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public void deleteAnimal(String Name){
@@ -156,11 +203,120 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getAnimalData() {
+    public Cursor getAnimalNames() {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String type = GlobalVariables.getInstance().aType;
         Cursor res = db.query(Table_NAME, new String[] {"Name"}, Col_13 +"=?", new String[] {type}, null, null,  null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
+
+    public Cursor getAnimalBreed() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String name = GlobalVariables.getInstance().aName;
+        Cursor res = db.query(Table_NAME, new String[] {"Breed"}, Col_1 +"=?", new String[] {name}, null, null,  null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
+
+    public Cursor getAnimalGender() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String name = GlobalVariables.getInstance().aName;
+        Cursor res = db.query(Table_NAME, new String[] {"Gender"}, Col_1 +"=?", new String[] {name}, null, null,  null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
+    public Cursor getAnimalNChildren() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String name = GlobalVariables.getInstance().aName;
+        Cursor res = db.query(Table_NAME, new String[] {"NChildren"}, Col_1 +"=?", new String[] {name}, null, null,  null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
+
+    public Cursor getAnimalProduct() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String name = GlobalVariables.getInstance().aName;
+        Cursor res = db.query(Table_NAME, new String[] {"Product"}, Col_1 +"=?", new String[] {name}, null, null,  null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
+
+    public Cursor getAnimalPurchaseDate() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String name = GlobalVariables.getInstance().aName;
+        Cursor res = db.query(Table_NAME, new String[] {"PurchaseDate"}, Col_1 +"=?", new String[] {name}, null, null,  null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
+
+    public Cursor getAnimalPurchasePrice() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String name = GlobalVariables.getInstance().aName;
+        Cursor res = db.query(Table_NAME, new String[] {"PurchasePrice"}, Col_1 +"=?", new String[] {name}, null, null,  null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
+
+    public Cursor getAnimalFeedName() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String name = GlobalVariables.getInstance().aName;
+        Cursor res = db.query(Table_Feed, new String[] {"FName"}, Col_24 +"=?", new String[] {name}, null, null,  null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
+
+    public Cursor getAnimalFeedRegiment() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String name = GlobalVariables.getInstance().aName;
+        Cursor res = db.query(Table_Feed, new String[] {"FRegiment"}, Col_24 +"=?", new String[] {name}, null, null,  null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
+
+    public Cursor getAnimalFeedAmount() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String name = GlobalVariables.getInstance().aName;
+        Cursor res = db.query(Table_Feed, new String[] {"FAmount"}, Col_24 +"=?", new String[] {name}, null, null,  null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
+
+    public Cursor getAnimalFeedCost() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String name = GlobalVariables.getInstance().aName;
+        Cursor res = db.query(Table_Feed, new String[] {"FCost"}, Col_24 +"=?", new String[] {name}, null, null,  null);
 
         if (res != null)
             res.moveToFirst();

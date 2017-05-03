@@ -58,6 +58,7 @@ public class IndAnimalList extends AppCompatActivity {
         add_ind_animal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GlobalVariables.getInstance().edit = false;
                 Intent addAnimalIntent = new Intent(IndAnimalList.this, AnimalInfo.class);
                 startActivity(addAnimalIntent);
 
@@ -67,11 +68,21 @@ public class IndAnimalList extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(GlobalVariables.getInstance().change == true) {
+            GlobalVariables.getInstance().change = false;
+            recreate();
+        }
+    }
+
 // TODO: This still doesnt update after info inserted.
     private void populateListView() {
         Log.d(TAG, "populateListView: Displaying data in ListView");
 
-        Cursor data = mydb.getAnimalData();
+        Cursor data = mydb.getAnimalNames();
         ArrayList<String> listData = new ArrayList<>();
         while (data.moveToNext()){
             listData.add(data.getString(0));
