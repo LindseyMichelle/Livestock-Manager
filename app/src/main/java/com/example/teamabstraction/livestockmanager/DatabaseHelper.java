@@ -110,12 +110,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-// TODO: this isn't working.
+
     public boolean insertFeedData(String FName, String FAmount, String FRegiment, String FCost) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Col_20, FName);
-        contentValues.put(Col_21, FRegiment); // amount/day
+        contentValues.put(Col_21, FName);
+        contentValues.put(Col_20, FRegiment); // amount/day
         contentValues.put(Col_22, FAmount); // lbs/bag
         contentValues.put(Col_23, FCost); // cost/bag
         contentValues.put(Col_24, GlobalVariables.getInstance().aName);
@@ -129,6 +129,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return true;
     }
+
+
+    public boolean insertProfit (String ProfitToDate) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PProfit, ProfitToDate);
+        contentValues.put(PAnimal_Name, GlobalVariables.getInstance().aName);
+
+        try {
+            long result = db.insertOrThrow(Table_Profits, null, contentValues);
+        } catch(SQLException exception) {
+            Log.v("SQL Exception", exception.getLocalizedMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean insertSellingPrice(String SellingPrice) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Col_14, SellingPrice);
+
+        try {
+            long result = db.insertOrThrow(Table_NAME, null, contentValues);
+        } catch(SQLException exception) {
+            Log.v("SQL Exception", exception.getLocalizedMessage());
+            return false;
+        }
+
+        return true;
+    }
+
 
     public boolean updateAnimalTable(String Name, String Breed, String Gender, String NChildren,
                                 String Product, String PurchaseDate, String PurchasePrice,
@@ -158,8 +191,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean updateFeedData(String FName, String FAmount, String FRegiment, String FCost) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Col_20, FName);
-        contentValues.put(Col_21, FRegiment); // amount/day
+        contentValues.put(Col_21, FName);
+        contentValues.put(Col_20, FRegiment); // amount/day
         contentValues.put(Col_22, FAmount); // lbs/bag
         contentValues.put(Col_23, FCost); // cost/bag
         contentValues.put(Col_24, GlobalVariables.getInstance().aName);
@@ -193,7 +226,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    //TODO: insert feed method similar to method above
 
     public void deleteAnimalType(String type){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -273,6 +305,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String name = GlobalVariables.getInstance().aName;
         Cursor res = db.query(Table_NAME, new String[] {"PurchasePrice"}, Col_1 +"=?", new String[] {name}, null, null,  null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
+
+    public Cursor getAnimalSellingPrice() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String name = GlobalVariables.getInstance().aName;
+        Cursor res = db.query(Table_NAME, new String[] {"SellingPrice"}, Col_1 +"=?", new String[] {name}, null, null,  null);
 
         if (res != null)
             res.moveToFirst();
