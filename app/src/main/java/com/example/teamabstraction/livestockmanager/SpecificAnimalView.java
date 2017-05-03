@@ -6,12 +6,17 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.content.DialogInterface;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Date;
 
 
 // This activity is will display information about specific animal
@@ -29,8 +34,9 @@ public class SpecificAnimalView extends AppCompatActivity {
     public Integer feedCostPerBag = 50; // AnimalInfo: Cost/Bag of Feed; DB: feed(cost)
     public Integer feedPerDay = 1; // AnimalInfo: Feed Amount/Day; DB: feed(regiment)
     public Integer feedLbsPerBag = 50; // AnimalInfo: Cost/Bag of Feed DB: feed(amount)
-    public Integer profit = 0; // TODO: needs to store in DB somewhere. Make new variable for Profit in profit table
-    public Integer daysOwned = 200; // TODO: AnimalInfo: Purchase Date (need to calculate): DB: Animal(purchase date)
+//    public Double profit = 0.0; // TODO: needs to store in DB somewhere. Make new variable for Profit in profit table
+    public String daysOwned = "200.0";// TODO: AnimalInfo: Purchase Date (need to calculate): DB: Animal(purchase date)
+    public String profitDisplayString;
     DatabaseHelper mydb;
 
     @Override
@@ -39,7 +45,7 @@ public class SpecificAnimalView extends AppCompatActivity {
         setContentView(R.layout.activity_specific_animal_view);
         getIntent();
         mydb = new DatabaseHelper(this);
-        TextView tv = (TextView)findViewById(R.id.specAnimalProfit);
+      final TextView tv = (TextView)findViewById(R.id.specAnimalProfit);
         TextView aName = (TextView)findViewById(R.id.textAnimalNameDB);
         TextView breed = (TextView)findViewById(R.id.textBreedDisplayDB);
         TextView gender = (TextView)findViewById(R.id.textGenderDisplayDB);
@@ -54,21 +60,24 @@ public class SpecificAnimalView extends AppCompatActivity {
         TextView feedcost = (TextView)findViewById(R.id.textFeedCostDisplayDB);
 
 
-        Cursor br = mydb.getAnimalBreed();
-        Cursor gen = mydb.getAnimalGender();
-        Cursor nC = mydb.getAnimalNChildren();
-        Cursor pr = mydb.getAnimalProduct();
-        Cursor pd = mydb.getAnimalPurchaseDate();
-        Cursor pp = mydb.getAnimalPurchasePrice();
-        Cursor sp = mydb.getAnimalSellingPrice(); // newly added for selling price
-        Cursor fn = mydb.getAnimalFeedName();
-        Cursor fr = mydb.getAnimalFeedRegiment();
-        Cursor fa = mydb.getAnimalFeedAmount();
-        Cursor fc = mydb.getAnimalFeedCost();
 
+        final Cursor br = mydb.getAnimalBreed();
+        final Cursor gen = mydb.getAnimalGender();
+        final Cursor nC = mydb.getAnimalNChildren();
+        final Cursor pr = mydb.getAnimalProduct();
+        final Cursor pd = mydb.getAnimalPurchaseDate();
+        final Cursor pp = mydb.getAnimalPurchasePrice();
+        final Cursor sp = mydb.getAnimalSellingPrice(); // newly added for selling price
+        final Cursor fn = mydb.getAnimalFeedName();
+        final Cursor fr = mydb.getAnimalFeedRegiment();
+        final Cursor fa = mydb.getAnimalFeedAmount();
+        final Cursor fc = mydb.getAnimalFeedCost();
 
-        tv.setText("Profit to date: $" + calculateProfit(feedCostPerBag, feedLbsPerBag,
-                feedPerDay, purchasePrice, salePrice, daysOwned));
+        profitDisplayString = calculateProfit(pd.getString(0), pp.getString(0),
+                sp.getString(0), fr.getString(0), fa.getString(0), fc.getString(0), daysOwned);
+
+        tv.setText(String.valueOf(profitDisplayString));
+//        TODO: cannot be in the onCreate- where to move it? 
 
         aName.setText(GlobalVariables.getInstance().aName);
         breed.setText(br.getString(0));
@@ -191,18 +200,84 @@ public class SpecificAnimalView extends AppCompatActivity {
     }
 
 
+    // used to round the Doubles for the profit calculation
+//    public static double round(double value, int places) {
+//        if (places < 0) throw new IllegalArgumentException();
+//
+//        BigDecimal bd = new BigDecimal(value);
+//        bd = bd.setScale(places, RoundingMode.HALF_UP);
+//        return bd.doubleValue();
+//    }
 
 
-    public int calculateProfit (int feedCostPerBag, int feedLbsPerBag, int feedPoundsPerDay,
-                                 int purchasePrice, int sellingPrice, int daysOwned) {
 
-        int costPerPound = feedCostPerBag/feedLbsPerBag;
-        int feedCostPerDay = feedPoundsPerDay*costPerPound;
-        int totalRunningFeedCost = daysOwned*feedCostPerDay;
+    public String calculateProfit (String pd, String pp, String sp, String fr, String fa, String fc, String daysOwned) {
+
+        Double profit = 0.0;
+        String profitString;
+
+        if (pp == null || pp.equalsIgnoreCase("")) {
+            pp = "0.0";
+        }
+
+        if (sp == null || sp.equalsIgnoreCase("")) {
+            sp = "0.0";
+        }
+
+        if (fr == null || fr.equalsIgnoreCase("")) {
+            fr = "0.0";
+        }
+
+        if (fa == null || fa.equalsIgnoreCase("")) {
+            fa = "0.0";
+        }
+
+        if (fc == null || fc.equalsIgnoreCase("")) {
+            fc = "0.0";
+        }
+
+        if (daysOwned == null || daysOwned.equalsIgnoreCase("")) {
+            daysOwned = "0.0";
+        }
+
+        Double feedCostPerBag = Double.parseDouble(fc);
+        Double feedLbsPerBag = Double.parseDouble(fa);
+        Double feedPoundsPerDay = Double.parseDouble(fr);
+        Double purchasePrice = Double.parseDouble(pp);
+        Double sellingPrice = 0.0;
+//        Double sellingPrice = Double.parseDouble(sp); // This does not work. DB sellingPriceInsert at fault?
+        Double daysOwnedDouble = Double.parseDouble(daysOwned);
+//        Date purchaseDate = DateUtil.stringToDate(pd);
+
+
+        Double costPerPound = feedCostPerBag/feedLbsPerBag;
+
+        Double feedCostPerDay = feedPoundsPerDay*costPerPound;
+
+        Double totalRunningFeedCost = daysOwnedDouble*feedCostPerDay;
 
         profit = -1*(totalRunningFeedCost+purchasePrice)+sellingPrice;
 
-        return profit;
-    }
+        profitString = profit.toString();
+        mydb.insertProfit(profitString);
 
+        // remove this toast once it is for sure inserted into the DB
+//        boolean profitInserted = mydb.insertProfit(profitString);
+//        if (profitInserted) {
+//            Toast.makeText(SpecificAnimalView.this, "Profit Inserted", Toast.LENGTH_LONG).show();
+//        } else {
+//            Toast.makeText(SpecificAnimalView.this, "Profit not Inserted", Toast.LENGTH_LONG).show();
+//        }
+
+        // There are just to test intermediate steps- not used in calculation.
+//        System.out.println("Days Profit After Calc: " + profit);
+//        System.out.println("Cost Per Pound: " + costPerPound);
+//        System.out.println("feedCostPerDay: " + feedCostPerDay);
+//        System.out.println("Selling Price: " + sellingPrice);
+//        System.out.println("Days Owned: " + daysOwnedDouble);
+//        System.out.println("Total Running Feed Cost: " + totalRunningFeedCost);
+//        System.out.println("Days Profit Before Calc: " + profit);
+
+        return profitString;
+    }
 }

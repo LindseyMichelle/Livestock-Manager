@@ -43,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Animal Name: "
+                android:textStyle="bold"
                 android:textSize="8pt" />
             <TextView
                 android:id="@+id/textAnimalNameDB"
@@ -69,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Breed:  "
+                android:textStyle="bold"
                 android:textSize="8pt" />
             <TextView
                 android:id="@+id/textBreedDisplayDB"
@@ -97,6 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Gender: "
+                android:textStyle="bold"
                 android:textSize="8pt" />
             <TextView
                 android:id="@+id/textGenderDisplayDB"
@@ -125,6 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Number of Children: "
+                android:textStyle="bold"
                 android:textSize="8pt" />
             <TextView
                 android:id="@+id/textChildrenDisplayDB"
@@ -153,6 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Product: "
+                android:textStyle="bold"
                 android:textSize="8pt" />
             <TextView
                 android:id="@+id/textProductDisplayDB"
@@ -181,6 +186,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Purchase Date: "
+                android:textStyle="bold"
                 android:textSize="8pt" />
             <TextView
                 android:id="@+id/textPurchaseDateDisplayDB"
@@ -208,6 +214,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Purchase Price: "
+                android:textStyle="bold"
                 android:textSize="8pt" />
             <TextView
                 android:id="@+id/textPurchasePriceDB"
@@ -236,6 +243,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Selling Price: "
+                android:textStyle="bold"
                 android:textSize="8pt" />
             <TextView
                 android:id="@+id/textSellingPriceDisplayDB"
@@ -264,6 +272,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Feed Name: "
+                android:textStyle="bold"
                 android:textSize="8pt" />
             <TextView
                 android:id="@+id/textFeedNameDisplayDB"
@@ -292,6 +301,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Feed Amount/Day: "
+                android:textStyle="bold"
                 android:textSize="8pt" />
             <TextView
                 android:id="@+id/textFeedAmountDisplayDB"
@@ -319,6 +329,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Feed Pounds/Bag: "
+                android:textStyle="bold"
                 android:textSize="8pt" />
             <TextView
                 android:id="@+id/textFeedPoundsDisplayDB"
@@ -346,6 +357,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Feed Cost/Bag: "
+                android:textStyle="bold"
                 android:textSize="8pt" />
             <TextView
                 android:id="@+id/textFeedCostDisplayDB"
@@ -364,6 +376,15 @@
             android:layout_marginTop="@dimen/add_animal_margin"
             android:layout_row="12"
             android:gravity="center">
+
+            <TextView
+                android:id="@+id/textProfitDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:text="Profit to date: $ "
+                android:textStyle="bold"
+                android:textSize="8pt" />
 
             <TextView
                 android:layout_width="wrap_content"

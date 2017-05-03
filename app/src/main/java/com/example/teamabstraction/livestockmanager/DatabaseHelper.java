@@ -114,14 +114,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertFeedData(String FName, String FAmount, String FRegiment, String FCost) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Col_20, FName);
-        contentValues.put(Col_21, FRegiment); // amount/day
+        contentValues.put(Col_21, FName);
+        contentValues.put(Col_20, FRegiment); // amount/day
         contentValues.put(Col_22, FAmount); // lbs/bag
         contentValues.put(Col_23, FCost); // cost/bag
         contentValues.put(Col_24, GlobalVariables.getInstance().aName);
 
         try {
             long result = db.insertOrThrow(Table_Feed, null, contentValues);
+        } catch(SQLException exception) {
+            Log.v("SQL Exception", exception.getLocalizedMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+
+    public boolean insertProfit (String ProfitToDate) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PProfit, ProfitToDate);
+        contentValues.put(PAnimal_Name, GlobalVariables.getInstance().aName);
+
+        try {
+            long result = db.insertOrThrow(Table_Profits, null, contentValues);
         } catch(SQLException exception) {
             Log.v("SQL Exception", exception.getLocalizedMessage());
             return false;
@@ -174,8 +191,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean updateFeedData(String FName, String FAmount, String FRegiment, String FCost) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Col_20, FName);
-        contentValues.put(Col_21, FRegiment); // amount/day
+        contentValues.put(Col_21, FName);
+        contentValues.put(Col_20, FRegiment); // amount/day
         contentValues.put(Col_22, FAmount); // lbs/bag
         contentValues.put(Col_23, FCost); // cost/bag
         contentValues.put(Col_24, GlobalVariables.getInstance().aName);
