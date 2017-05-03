@@ -110,7 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-// TODO: this isn't working.
+
     public boolean insertFeedData(String FName, String FAmount, String FRegiment, String FCost) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -129,6 +129,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return true;
     }
+
+    public boolean insertSellingPrice(String SellingPrice) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Col_14, SellingPrice);
+        contentValues.put(Col_1, GlobalVariables.getInstance().aName);
+
+        try {
+            long result = db.insertOrThrow(Table_NAME, null, contentValues);
+        } catch(SQLException exception) {
+            Log.v("SQL Exception", exception.getLocalizedMessage());
+            return false;
+        }
+
+        return true;
+    }
+
 
     public boolean updateAnimalTable(String Name, String Breed, String Gender, String NChildren,
                                 String Product, String PurchaseDate, String PurchasePrice,
