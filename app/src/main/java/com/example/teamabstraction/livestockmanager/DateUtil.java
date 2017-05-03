@@ -2,7 +2,9 @@ package com.example.teamabstraction.livestockmanager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by lindseyballard on 4/24/17.
@@ -17,11 +19,18 @@ public class DateUtil {
     public static Date stringToDate(String inputDate) {
         // pull this form the db for each animal
         try {
-            Date date1 = new SimpleDateFormat("mm/dd/yyyy").parse(inputDate);
+            Date date1 = new SimpleDateFormat("mm/dd/yyyy", Locale.ENGLISH).parse(inputDate);
             return date1;
         } catch (ParseException e) {
             System.out.println("ERROR - " + e.getMessage());
             return null;
         }
     }
+
+    public static Calendar dateToCalendar(Date inputDate) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(inputDate);
+        return cal;
+    }
+
 }

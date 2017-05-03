@@ -14,9 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 
 // This activity is will display information about specific animal
@@ -74,7 +74,7 @@ public class SpecificAnimalView extends AppCompatActivity {
         final Cursor fc = mydb.getAnimalFeedCost();
 
         profitDisplayString = calculateProfit(pd.getString(0), pp.getString(0),
-                sp.getString(0), fr.getString(0), fa.getString(0), fc.getString(0), daysOwned);
+                sp.getString(0), fr.getString(0), fa.getString(0), fc.getString(0));
 
         tv.setText(String.valueOf(profitDisplayString));
 //        TODO: cannot be in the onCreate- where to move it? 
@@ -211,7 +211,7 @@ public class SpecificAnimalView extends AppCompatActivity {
 
 
 
-    public String calculateProfit (String pd, String pp, String sp, String fr, String fa, String fc, String daysOwned) {
+    public String calculateProfit (String pd, String pp, String sp, String fr, String fa, String fc) {
 
         Double profit = 0.0;
         String profitString;
@@ -236,9 +236,7 @@ public class SpecificAnimalView extends AppCompatActivity {
             fc = "0.0";
         }
 
-        if (daysOwned == null || daysOwned.equalsIgnoreCase("")) {
-            daysOwned = "0.0";
-        }
+
 
         Double feedCostPerBag = Double.parseDouble(fc);
         Double feedLbsPerBag = Double.parseDouble(fa);
@@ -246,17 +244,26 @@ public class SpecificAnimalView extends AppCompatActivity {
         Double purchasePrice = Double.parseDouble(pp);
         Double sellingPrice = 0.0;
 //        Double sellingPrice = Double.parseDouble(sp); // This does not work. DB sellingPriceInsert at fault?
-        Double daysOwnedDouble = Double.parseDouble(daysOwned);
-//        Date purchaseDate = DateUtil.stringToDate(pd);
+        Date purchaseDateDate = DateUtil.stringToDate(pd);
+        Calendar purchaseDateCal = DateUtil.dateToCalendar(purchaseDateDate);
+        Calendar currentDate = Calendar.getInstance(Locale.getDefault());
+        int daysOwned = DateComparator.daysOwned(currentDate, purchaseDateCal);
+        double daysOwnedDouble = (double) daysOwned;
 
 
+        System.out.println("Days Owned: " + daysOwned);
         Double costPerPound = feedCostPerBag/feedLbsPerBag;
+//        System.out.println("Cost Per Pound: " + costPerPound);
 
         Double feedCostPerDay = feedPoundsPerDay*costPerPound;
+//        System.out.println("feedCostPerDay: " + feedCostPerDay);
 
         Double totalRunningFeedCost = daysOwnedDouble*feedCostPerDay;
+//        System.out.println("Total Running Feed Cost: " + totalRunningFeedCost);
 
+//        System.out.println("Profit Before Calc: " + profit);
         profit = -1*(totalRunningFeedCost+purchasePrice)+sellingPrice;
+        System.out.println("Profit After Calc: " + profit);
 
         profitString = profit.toString();
         mydb.insertProfit(profitString);
