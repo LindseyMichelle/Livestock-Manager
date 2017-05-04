@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.teamabstraction.livestockmanager.SpecificAnimalView"
+    android:background="@drawable/background"
     app:theme="@style/AppTheme">
 
     // layout to display the data about the animal. I don't think it's necessary to
@@ -44,14 +45,16 @@
                 android:layout_gravity="fill_horizontal"
                 android:text="Animal Name: "
                 android:textStyle="bold"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
             <TextView
                 android:id="@+id/textAnimalNameDB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text=""
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
         </LinearLayout>
 
 
@@ -71,14 +74,16 @@
                 android:layout_gravity="fill_horizontal"
                 android:text="Breed:  "
                 android:textStyle="bold"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
             <TextView
                 android:id="@+id/textBreedDisplayDB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text=""
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
 
         </LinearLayout>
 
@@ -100,14 +105,16 @@
                 android:layout_gravity="fill_horizontal"
                 android:text="Gender: "
                 android:textStyle="bold"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
             <TextView
                 android:id="@+id/textGenderDisplayDB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text=""
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
 
         </LinearLayout>
 
@@ -129,14 +136,16 @@
                 android:layout_gravity="fill_horizontal"
                 android:text="Number of Children: "
                 android:textStyle="bold"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
             <TextView
                 android:id="@+id/textChildrenDisplayDB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text=""
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
 
         </LinearLayout>
 
@@ -158,14 +167,16 @@
                 android:layout_gravity="fill_horizontal"
                 android:text="Product: "
                 android:textStyle="bold"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
             <TextView
                 android:id="@+id/textProductDisplayDB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text=""
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
 
         </LinearLayout>
 
@@ -187,14 +198,16 @@
                 android:layout_gravity="fill_horizontal"
                 android:text="Purchase Date: "
                 android:textStyle="bold"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
             <TextView
                 android:id="@+id/textPurchaseDateDisplayDB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text=""
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
 
         </LinearLayout>
 
@@ -215,7 +228,8 @@
                 android:layout_gravity="fill_horizontal"
                 android:text="Purchase Price: "
                 android:textStyle="bold"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
             <TextView
                 android:id="@+id/textPurchasePriceDB"
                 android:layout_width="wrap_content"
@@ -244,14 +258,16 @@
                 android:layout_gravity="fill_horizontal"
                 android:text="Selling Price: "
                 android:textStyle="bold"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
             <TextView
                 android:id="@+id/textSellingPriceDisplayDB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text=""
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
 
         </LinearLayout>
 
@@ -273,14 +289,16 @@
                 android:layout_gravity="fill_horizontal"
                 android:text="Feed Name: "
                 android:textStyle="bold"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
             <TextView
                 android:id="@+id/textFeedNameDisplayDB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text=""
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
 
         </LinearLayout>
 
@@ -302,14 +320,16 @@
                 android:layout_gravity="fill_horizontal"
                 android:text="Feed Amount/Day: "
                 android:textStyle="bold"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
             <TextView
                 android:id="@+id/textFeedAmountDisplayDB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text=""
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
 
         </LinearLayout>
 
@@ -330,14 +350,16 @@
                 android:layout_gravity="fill_horizontal"
                 android:text="Feed Pounds/Bag: "
                 android:textStyle="bold"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
             <TextView
                 android:id="@+id/textFeedPoundsDisplayDB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text=""
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
 
         </LinearLayout>
 
@@ -358,14 +380,16 @@
                 android:layout_gravity="fill_horizontal"
                 android:text="Feed Cost/Bag: "
                 android:textStyle="bold"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
             <TextView
                 android:id="@+id/textFeedCostDisplayDB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text=""
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
 
         </LinearLayout>
 
@@ -384,7 +408,8 @@
                 android:layout_gravity="fill_horizontal"
                 android:text="Profit to date: $ "
                 android:textStyle="bold"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -392,7 +417,8 @@
                 android:layout_gravity="fill_horizontal"
                 android:id="@+id/specAnimalProfit"
                 android:textAllCaps="false"
-                android:textSize="8pt" />
+                android:textSize="8pt"
+                android:textColor="@android:color/black"/>
 
         </LinearLayout>
 
@@ -411,7 +437,7 @@
         tools:layout_editor_absoluteX="164dp"
         tools:layout_editor_absoluteY="450dp"
         style="?android:attr/borderlessButtonStyle"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@android:color/white"/>
 
     <Button
         android:id="@+id/mark_as_sold"
@@ -422,7 +448,7 @@
         android:layout_margin="@dimen/add_animal_margin"
         android:text="Mark As Sold"
         android:textAllCaps="false"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/delete_animal"
@@ -433,7 +459,7 @@
         android:layout_margin="@dimen/add_animal_margin"
         android:text="Delete"
         android:textAllCaps="false"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@android:color/white"/>
 
 
 
