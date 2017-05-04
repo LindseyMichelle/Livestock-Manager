@@ -251,13 +251,14 @@ public class SpecificAnimalView extends AppCompatActivity {
         double daysOwnedDouble = (double) daysOwned;
 
 
-        System.out.println("Days Owned: " + daysOwned);
+
         Double costPerPound = feedCostPerBag/feedLbsPerBag;
 //        System.out.println("Cost Per Pound: " + costPerPound);
 
         Double feedCostPerDay = feedPoundsPerDay*costPerPound;
 //        System.out.println("feedCostPerDay: " + feedCostPerDay);
 
+        System.out.println("Days Owned: " + daysOwnedDouble);
         Double totalRunningFeedCost = daysOwnedDouble*feedCostPerDay;
 //        System.out.println("Total Running Feed Cost: " + totalRunningFeedCost);
 
