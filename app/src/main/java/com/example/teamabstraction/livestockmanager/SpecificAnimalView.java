@@ -51,8 +51,6 @@ public class SpecificAnimalView extends AppCompatActivity {
         TextView feedamount = (TextView)findViewById(R.id.textFeedPoundsDisplayDB);
         TextView feedcost = (TextView)findViewById(R.id.textFeedCostDisplayDB);
 
-
-
         final Cursor br = mydb.getAnimalBreed();
         final Cursor gen = mydb.getAnimalGender();
         final Cursor nC = mydb.getAnimalNChildren();
@@ -64,10 +62,9 @@ public class SpecificAnimalView extends AppCompatActivity {
         final Cursor fr = mydb.getAnimalFeedRegiment();
         final Cursor fa = mydb.getAnimalFeedAmount();
         final Cursor fc = mydb.getAnimalFeedCost();
-//        final Cursor ptd = mydb.getProfit();
 
-        profitDisplayString = calculateProfit(pd.getString(0), pp.getString(0),
-                sp.getString(0), fr.getString(0), fa.getString(0), fc.getString(0));
+        profitDisplayString = ProfitUtil.calculateProfit(this);
+
 
         tv.setText(String.valueOf(profitDisplayString));
 //        TODO: cannot be in the onCreate- where to move it? 
@@ -207,82 +204,81 @@ public class SpecificAnimalView extends AppCompatActivity {
 
 
 
-    public String calculateProfit (String pd, String pp, String sp, String fr, String fa, String fc) {
-
-        Double profit = 0.0;
-        String profitString;
-
-        if (pp == null || pp.equalsIgnoreCase("")) {
-            pp = "0.0";
-        }
-
-        if (sp == null || sp.equalsIgnoreCase("")) {
-            sp = "0.0";
-        }
-
-        if (fr == null || fr.equalsIgnoreCase("")) {
-            fr = "0.0";
-        }
-
-        if (fa == null || fa.equalsIgnoreCase("")) {
-            fa = "0.0";
-        }
-
-        if (fc == null || fc.equalsIgnoreCase("")) {
-            fc = "0.0";
-        }
-
-
-
-        Double feedCostPerBag = Double.parseDouble(fc);
-        Double feedLbsPerBag = Double.parseDouble(fa);
-        Double feedPoundsPerDay = Double.parseDouble(fr);
-        Double purchasePrice = Double.parseDouble(pp);
-        //Double sellingPrice = 0.0;
-        Double sellingPrice = Double.parseDouble(sp); // This does not work. DB sellingPriceInsert at fault?
-        Date purchaseDateDate = DateUtil.stringToDate(pd);
-        Calendar purchaseDateCal = DateUtil.dateToCalendar(purchaseDateDate);
-        Calendar currentDate = Calendar.getInstance(Locale.getDefault());
-        int daysOwned = DateComparator.daysOwned(currentDate, purchaseDateCal);
-        double daysOwnedDouble = (double) daysOwned;
-
-
-
-        Double costPerPound = feedCostPerBag/feedLbsPerBag;
-//        System.out.println("Cost Per Pound: " + costPerPound);
-
-        Double feedCostPerDay = feedPoundsPerDay*costPerPound;
-//        System.out.println("feedCostPerDay: " + feedCostPerDay);
-
-        System.out.println("Days Owned: " + daysOwnedDouble);
-        Double totalRunningFeedCost = daysOwnedDouble*feedCostPerDay;
-//        System.out.println("Total Running Feed Cost: " + totalRunningFeedCost);
-
-//        System.out.println("Profit Before Calc: " + profit);
-        profit = -1*(totalRunningFeedCost+purchasePrice)+sellingPrice;
-        System.out.println("Profit After Calc: " + profit);
-
-        profitString = profit.toString();
-        mydb.insertProfit(profitString);
-
-
-        // remove this toast once it is for sure inserted into the DB
-//        boolean profitInserted = mydb.insertProfit(profitString);
-//        if (profitInserted) {
-//            Toast.makeText(SpecificAnimalView.this, "Profit Inserted", Toast.LENGTH_LONG).show();
-//        } else {
-//            Toast.makeText(SpecificAnimalView.this, "Profit not Inserted", Toast.LENGTH_LONG).show();
+//    public String calculateProfit (String pd, String pp, String sp, String fr, String fa, String fc) {
+//
+//        Double profit = 0.00;
+//        String profitString;
+//
+//        if (pp == null || pp.equalsIgnoreCase("")) {
+//            pp = "0.00";
 //        }
-
-        // There are just to test intermediate steps- not used in calculation.
-//        System.out.println("Days Profit After Calc: " + profit);
-//        System.out.println("Cost Per Pound: " + costPerPound);
-//        System.out.println("feedCostPerDay: " + feedCostPerDay);
-//        System.out.println("Selling Price: " + sellingPrice);
+//
+//        if (sp == null || sp.equalsIgnoreCase("")) {
+//            sp = "0.00";
+//        }
+//
+//        if (fr == null || fr.equalsIgnoreCase("")) {
+//            fr = "0.00";
+//        }
+//
+//        if (fa == null || fa.equalsIgnoreCase("")) {
+//            fa = "0.00";
+//        }
+//
+//        if (fc == null || fc.equalsIgnoreCase("")) {
+//            fc = "0.00";
+//        }
+//
+//
+//
+//        Double feedCostPerBag = Double.parseDouble(fc);
+//        Double feedLbsPerBag = Double.parseDouble(fa);
+//        Double feedPoundsPerDay = Double.parseDouble(fr);
+//        Double purchasePrice = Double.parseDouble(pp);
+//        Double sellingPrice = Double.parseDouble(sp); // This does not work. DB sellingPriceInsert at fault?
+//        Date purchaseDateDate = DateUtil.stringToDate(pd);
+//        Calendar purchaseDateCal = DateUtil.dateToCalendar(purchaseDateDate);
+//        Calendar currentDate = Calendar.getInstance(Locale.getDefault());
+//        int daysOwned = DateComparator.daysOwned(currentDate, purchaseDateCal);
+//        double daysOwnedDouble = (double) daysOwned;
+//
+//
+//
+//        Double costPerPound = feedCostPerBag/feedLbsPerBag;
+////        System.out.println("Cost Per Pound: " + costPerPound);
+//
+//        Double feedCostPerDay = feedPoundsPerDay*costPerPound;
+////        System.out.println("feedCostPerDay: " + feedCostPerDay);
+//
 //        System.out.println("Days Owned: " + daysOwnedDouble);
-//        System.out.println("Total Running Feed Cost: " + totalRunningFeedCost);
-//        System.out.println("Days Profit Before Calc: " + profit);
-
-        return profitString;
-    }
+//        Double totalRunningFeedCost = daysOwnedDouble*feedCostPerDay;
+////        System.out.println("Total Running Feed Cost: " + totalRunningFeedCost);
+//
+////        System.out.println("Profit Before Calc: " + profit);
+//        profit = -1*(totalRunningFeedCost+purchasePrice)+sellingPrice;
+//        System.out.println("Profit After Calc: " + profit);
+//
+//        profitString = profit.toString();
+//        mydb.insertProfit(profitString);
+//
+//
+//        // remove this toast once it is for sure inserted into the DB
+////        boolean profitInserted = mydb.insertProfit(profitString);
+////        if (profitInserted) {
+////            Toast.makeText(SpecificAnimalView.this, "Profit Inserted", Toast.LENGTH_LONG).show();
+////        } else {
+////            Toast.makeText(SpecificAnimalView.this, "Profit not Inserted", Toast.LENGTH_LONG).show();
+////        }
+//
+//        // There are just to test intermediate steps- not used in calculation.
+////        System.out.println("Days Profit After Calc: " + profit);
+////        System.out.println("Cost Per Pound: " + costPerPound);
+////        System.out.println("feedCostPerDay: " + feedCostPerDay);
+////        System.out.println("Selling Price: " + sellingPrice);
+////        System.out.println("Days Owned: " + daysOwnedDouble);
+////        System.out.println("Total Running Feed Cost: " + totalRunningFeedCost);
+////        System.out.println("Days Profit Before Calc: " + profit);
+//
+//        return profitString;
+//    }
 }

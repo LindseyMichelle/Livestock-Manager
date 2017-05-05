@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         GlobalVariables.getInstance().change = false;
 
         TextView profitView = (TextView)findViewById(R.id.totalProfit);
-        profitView.setText("Profit to date: $" + totalProfit());
+        profitView.setText("Profit to date:\n $" + totalProfit());
 
 
                 //Creates and populates a list of animals (May need to import from a database later
@@ -103,7 +103,6 @@ public class HomeActivity extends AppCompatActivity {
                         mydb.insertAnimalType(m_Text);
 
                         recreate();
-                        // TODO: m_text to database
                     }
                 });
                 builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -179,6 +178,7 @@ public class HomeActivity extends AppCompatActivity {
         return deleteConfirmation;
 
     }
+
 
     private String totalProfit () {
         Cursor data = mydb.getAllProfits();

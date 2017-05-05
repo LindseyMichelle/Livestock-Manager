@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.icu.text.DisplayContext;
 import android.util.Log;
 
 // TODO: Make sure all variables that are input are being stored in DB (line 64)
