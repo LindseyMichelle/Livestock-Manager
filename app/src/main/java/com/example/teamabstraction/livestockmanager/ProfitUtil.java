@@ -2,6 +2,8 @@ package com.example.teamabstraction.livestockmanager;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -12,7 +14,7 @@ import java.util.Locale;
 
 
 public class ProfitUtil {
-    public static String calculateProfit (Context context) {
+    public static String calculateProfit (Context context, String animal) {
         DatabaseHelper mydb;
         mydb = new DatabaseHelper(context);
 

@@ -63,7 +63,7 @@ public class SpecificAnimalView extends AppCompatActivity {
         final Cursor fa = mydb.getAnimalFeedAmount();
         final Cursor fc = mydb.getAnimalFeedCost();
 
-        profitDisplayString = ProfitUtil.calculateProfit(this);
+        profitDisplayString = ProfitUtil.calculateProfit(this, GlobalVariables.getInstance().aName);
 
 
         tv.setText(String.valueOf(profitDisplayString));
@@ -191,94 +191,4 @@ public class SpecificAnimalView extends AppCompatActivity {
         return deleteConfirmation;
 
     }
-
-
-    // used to round the Doubles for the profit calculation
-//    public static double round(double value, int places) {
-//        if (places < 0) throw new IllegalArgumentException();
-//
-//        BigDecimal bd = new BigDecimal(value);
-//        bd = bd.setScale(places, RoundingMode.HALF_UP);
-//        return bd.doubleValue();
-//    }
-
-
-
-//    public String calculateProfit (String pd, String pp, String sp, String fr, String fa, String fc) {
-//
-//        Double profit = 0.00;
-//        String profitString;
-//
-//        if (pp == null || pp.equalsIgnoreCase("")) {
-//            pp = "0.00";
-//        }
-//
-//        if (sp == null || sp.equalsIgnoreCase("")) {
-//            sp = "0.00";
-//        }
-//
-//        if (fr == null || fr.equalsIgnoreCase("")) {
-//            fr = "0.00";
-//        }
-//
-//        if (fa == null || fa.equalsIgnoreCase("")) {
-//            fa = "0.00";
-//        }
-//
-//        if (fc == null || fc.equalsIgnoreCase("")) {
-//            fc = "0.00";
-//        }
-//
-//
-//
-//        Double feedCostPerBag = Double.parseDouble(fc);
-//        Double feedLbsPerBag = Double.parseDouble(fa);
-//        Double feedPoundsPerDay = Double.parseDouble(fr);
-//        Double purchasePrice = Double.parseDouble(pp);
-//        Double sellingPrice = Double.parseDouble(sp); // This does not work. DB sellingPriceInsert at fault?
-//        Date purchaseDateDate = DateUtil.stringToDate(pd);
-//        Calendar purchaseDateCal = DateUtil.dateToCalendar(purchaseDateDate);
-//        Calendar currentDate = Calendar.getInstance(Locale.getDefault());
-//        int daysOwned = DateComparator.daysOwned(currentDate, purchaseDateCal);
-//        double daysOwnedDouble = (double) daysOwned;
-//
-//
-//
-//        Double costPerPound = feedCostPerBag/feedLbsPerBag;
-////        System.out.println("Cost Per Pound: " + costPerPound);
-//
-//        Double feedCostPerDay = feedPoundsPerDay*costPerPound;
-////        System.out.println("feedCostPerDay: " + feedCostPerDay);
-//
-//        System.out.println("Days Owned: " + daysOwnedDouble);
-//        Double totalRunningFeedCost = daysOwnedDouble*feedCostPerDay;
-////        System.out.println("Total Running Feed Cost: " + totalRunningFeedCost);
-//
-////        System.out.println("Profit Before Calc: " + profit);
-//        profit = -1*(totalRunningFeedCost+purchasePrice)+sellingPrice;
-//        System.out.println("Profit After Calc: " + profit);
-//
-//        profitString = profit.toString();
-//        mydb.insertProfit(profitString);
-//
-//
-//        // remove this toast once it is for sure inserted into the DB
-////        boolean profitInserted = mydb.insertProfit(profitString);
-////        if (profitInserted) {
-////            Toast.makeText(SpecificAnimalView.this, "Profit Inserted", Toast.LENGTH_LONG).show();
-////        } else {
-////            Toast.makeText(SpecificAnimalView.this, "Profit not Inserted", Toast.LENGTH_LONG).show();
-////        }
-//
-//        // There are just to test intermediate steps- not used in calculation.
-////        System.out.println("Days Profit After Calc: " + profit);
-////        System.out.println("Cost Per Pound: " + costPerPound);
-////        System.out.println("feedCostPerDay: " + feedCostPerDay);
-////        System.out.println("Selling Price: " + sellingPrice);
-////        System.out.println("Days Owned: " + daysOwnedDouble);
-////        System.out.println("Total Running Feed Cost: " + totalRunningFeedCost);
-////        System.out.println("Days Profit Before Calc: " + profit);
-//
-//        return profitString;
-//    }
 }

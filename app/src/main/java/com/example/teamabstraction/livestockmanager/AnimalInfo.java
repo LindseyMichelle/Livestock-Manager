@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
+import java.util.Date;
 
 
 // This activity is the input page that will record the basic
@@ -56,6 +56,8 @@ public class AnimalInfo extends AppCompatActivity
             Cursor fr = mydb.getAnimalFeedRegiment();
             Cursor fa = mydb.getAnimalFeedAmount();
             Cursor fc = mydb.getAnimalFeedCost();
+
+
             editName.setText(GlobalVariables.getInstance().aName);
             editBreed.setText(br.getString(0));
             editGender.setText(gen.getString(0));
@@ -78,6 +80,7 @@ public class AnimalInfo extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 // TODO: call methods for insert to each table, rename this to animal insert
+
                 if(GlobalVariables.getInstance().edit == true){
                     boolean isUpdated = mydb.updateAnimalTable(
                             editName.getText().toString(),
@@ -88,6 +91,7 @@ public class AnimalInfo extends AppCompatActivity
                             editPurchaseDate.getText().toString(),
                             editPurchasePrice.getText().toString(),
                             GlobalVariables.getInstance().aType);
+
 
 
                     // TODO: call insert feed method- not working
@@ -101,7 +105,7 @@ public class AnimalInfo extends AppCompatActivity
                         Toast.makeText(AnimalInfo.this, "Data Updated", Toast.LENGTH_LONG).show();
                         finish();
                     } else {
-                        Toast.makeText(AnimalInfo.this, "Data not Updated", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AnimalInfo.this, "Data Not Updated", Toast.LENGTH_LONG).show();
                         finish();
                     }
 

@@ -3,8 +3,10 @@ package com.example.teamabstraction.livestockmanager;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -58,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         GlobalVariables.getInstance().change = false;
 
         TextView profitView = (TextView)findViewById(R.id.totalProfit);
-        profitView.setText("Profit to date:\n $" + totalProfit());
+        profitView.setText(totalProfit(this));
 
 
                 //Creates and populates a list of animals (May need to import from a database later
@@ -180,17 +182,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    private String totalProfit () {
-        Cursor data = mydb.getAllProfits();
-        String sumString;
-        Double sum = 0.00;
-        do{
-            sum += Double.parseDouble(data.getString(0));
-        } while(data.moveToNext());
-        sumString = sum.toString();
-        return sumString;
-    }
-
 
 
     private void populateListView() {
@@ -210,6 +201,37 @@ public class HomeActivity extends AppCompatActivity {
         ListAdapter adapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listData);
         animalListView.setAdapter(adapter);
     }
+
+
+
+    public String totalProfit (Context context) {
+        DatabaseHelper mydb;
+        mydb = new DatabaseHelper(context);
+
+        Cursor data = mydb.getAllAnimals();
+        String sumString = "0";
+        String profitCalc;
+        String dbString;
+        Double tempDouble;
+        Double sum = 0.00;
+        try {
+            do {
+                dbString = data.getString(0);
+                System.out.println("dbSTRING VALUE: " + dbString);
+                profitCalc = "100";
+//                ProfitUtil.calculateProfit(getBaseContext(), dbString);
+//              TODO: get this to work
+                tempDouble = Double.parseDouble(profitCalc);
+                sum += tempDouble;
+            } while (data.moveToNext());
+            sumString = sum.toString();
+            return sumString;
+        } catch(CursorIndexOutOfBoundsException a) {
+            return "0";
+        }
+    }
+
+
 }
 
 

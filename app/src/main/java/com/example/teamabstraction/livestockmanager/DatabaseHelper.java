@@ -130,21 +130,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertProfit (String ProfitToDate) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(PProfit, ProfitToDate);
-        contentValues.put(PAnimal_Name, GlobalVariables.getInstance().aName);
-
-        try {
-            long result = db.insertOrThrow(Table_Profits, null, contentValues);
-        } catch(SQLException exception) {
-            Log.v("SQL Exception", exception.getLocalizedMessage());
-            return false;
-        }
-
-        return true;
-    }
+//    public boolean insertProfit (String ProfitToDate) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(PProfit, ProfitToDate);
+//        contentValues.put(PAnimal_Name, GlobalVariables.getInstance().aName);
+//
+//        try {
+//            long result = db.insertOrThrow(Table_Profits, null, contentValues);
+//        } catch(SQLException exception) {
+//            Log.v("SQL Exception", exception.getLocalizedMessage());
+//            return false;
+//        }
+//
+//        return true;
+//    }
 
     // make this an update instead of insert
     public boolean updateSellingPrice(String SellingPrice) {
@@ -294,7 +294,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String name = GlobalVariables.getInstance().aName;
         Cursor res = db.query(Table_NAME, new String[] {"PurchaseDate"}, Col_1 +"=?", new String[] {name}, null, null,  null);
-
         if (res != null)
             res.moveToFirst();
         return res;
@@ -369,15 +368,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAnimalTypes() {
         SQLiteDatabase db2 = this.getWritableDatabase();
+
         Cursor res2 = db2.query(Table_Type, new String[]{"AnimalType"}, null, null, null, null, null);
         if (res2 != null)
             res2.moveToFirst();
         return res2;
     }
 
-    public Cursor getAllProfits() {
+    public Cursor getAllAnimals() {
+
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.query(Table_Profits, new String[]{"ProfitToDate"}, null, null, null, null, null);
+        Cursor res = db.query(Table_NAME, new String[]{"Name"}, null, null, null, null, null);
 
         if (res != null)
             res.moveToFirst();
