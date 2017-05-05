@@ -20,6 +20,9 @@ import android.widget.EditText;
 import android.text.InputType;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageView;
+
+
 
 
 
@@ -29,6 +32,7 @@ public class HomeActivity extends AppCompatActivity {
     private ListView animalListView;
     private ArrayAdapter<String> animalListAdapter;
     private Button addAnimal;
+    private ImageView homePicture;
 
     private Button deleteAnimal;
     private String m_Text = "";
@@ -46,6 +50,8 @@ public class HomeActivity extends AppCompatActivity {
         welcomeMessage = (TextView) findViewById(R.id.displayWelcomeInformation);
         welcomeMessage.setText(R.string.displayWelcomeInformation);
         //Find the ListView resource
+        homePicture = (ImageView) findViewById(R.id.barn);
+        homePicture.getResources().getDrawable(R.drawable.barn);
         animalListView = (ListView) findViewById(R.id.animalList);
         mydb = new DatabaseHelper(this);
         GlobalVariables.getInstance().edit = false;
@@ -60,7 +66,6 @@ public class HomeActivity extends AppCompatActivity {
         //final ArrayList<String> listOfAnimalsArray = new ArrayList<String>();
         //listOfAnimalsArray.addAll(Arrays.asList(animals));
         //animalListAdapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listOfAnimalsArray);
-
         populateListView();
         //Set the ArrayAdapter as the ListView's Adapter
         //animalListView.setAdapter(animalListAdapter);
@@ -72,6 +77,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent myIntent = new Intent(HomeActivity.this, IndAnimalList.class);
                     GlobalVariables.getInstance().aType = (String)parent.getItemAtPosition(position);
                     startActivity(myIntent);
+
             }
         });
 

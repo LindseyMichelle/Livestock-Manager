@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context="com.example.teamabstraction.livestockmanager.HomeActivity"
     app:theme = "@style/AppTheme"
     >
@@ -23,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize = "16sp"
+           android:textColor="@android:color/black"
             />
 
     </RelativeLayout>
@@ -34,15 +36,22 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
+       <ImageView
+           android:layout_width="40sp"
+           android:layout_height="40sp"
+           android:layout_marginTop="40sp"
+           android:id="@+id/barn"
+           android:src="@drawable/barn"
+           />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id = "@+id/animalList"
         android:textSize = "16sp"
         android:layout_marginTop="40sp"
-        android:layout_marginLeft="40sp"
-        android:layout_marginRight="40sp"
-        android:layout_marginBottom="80sp" />
+        android:layout_toRightOf="@id/barn"
+        android:textColor="@android:color/black"/>
 
   </RelativeLayout>
 
@@ -58,7 +67,7 @@
         android:layout_margin="@dimen/add_animal_margin"
         android:text="@string/add_animal"
         style="?android:attr/borderlessButtonStyle"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@android:color/white"/>
 
 
     <Button
@@ -72,7 +81,7 @@
         app:layout_anchor="@+id/include3"
         app:layout_anchorGravity="bottom|center_horizontal"
         style="?android:attr/borderlessButtonStyle"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -80,7 +89,8 @@
         android:id="@+id/totalProfit"
         android:layout_gravity="bottom|start"
         android:layout_marginBottom="30dp"
-        android:layout_marginLeft="@dimen/add_animal_margin"/>
+        android:layout_marginLeft="@dimen/add_animal_margin"
+        android:textColor="@android:color/white"/>
 
     <include
         android:id="@+id/include3"

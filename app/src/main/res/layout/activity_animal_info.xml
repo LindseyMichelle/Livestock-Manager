@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@drawable/background"
     tools:context="com.example.teamabstraction.livestockmanager.AnimalInfo">
 
     <GridLayout
@@ -186,6 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Purchase Date\n (dd/mm/yyyy)"
+                android:textColor="@android:color/white"
                 android:textSize="8pt" />
 
             <EditText
@@ -215,6 +217,7 @@
                 android:layout_gravity="fill_horizontal"
                 android:layout_row="5"
                 android:text="Feed Name"
+                android:textColor="@android:color/white"
                 android:textSize="8pt" />
 
             <EditText
@@ -242,6 +245,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Feed Amount/Day\n(lbs)"
+                android:textColor="@android:color/white"
                 android:textSize="8pt" />
 
             <EditText
@@ -267,6 +271,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Pounds/Bag of Feed"
+                android:textColor="@android:color/white"
                 android:textSize="8pt" />
 
             <EditText
@@ -292,6 +297,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:text="Cost/Bag of Feed"
+                android:textColor="@android:color/white"
                 android:textSize="8pt" />
 
             <EditText
@@ -312,7 +318,8 @@
             android:layout_marginBottom="53dp"
             android:layout_row="11"
             android:text="Add Data"
-            android:textColor="@color/colorAccent"/>
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@android:color/white"/>
 
     </GridLayout>
 
