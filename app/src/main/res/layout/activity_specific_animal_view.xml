@@ -5,10 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.teamabstraction.livestockmanager.SpecificAnimalView"
-
-    android:theme="@style/AppTheme">
     android:background="@drawable/background"
-    app:theme="@style/AppTheme">
+    android:theme="@style/AppTheme">
 
 
     // layout to display the data about the animal. I don't think it's necessary to
