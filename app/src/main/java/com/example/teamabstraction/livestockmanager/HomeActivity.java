@@ -195,9 +195,13 @@ public class HomeActivity extends AppCompatActivity {
 
         Cursor data = mydb.getAnimalTypes();
         ArrayList<String> listData = new ArrayList<>();
-        while (data.moveToNext()){
-            listData.add(data.getString(0));
+        if(data.isBeforeFirst()) {
+            return;
         }
+
+        do{
+            listData.add(data.getString(0));
+        }while (data.moveToNext());
 
         ListAdapter adapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listData);
         animalListView.setAdapter(adapter);

@@ -148,13 +148,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // make this an update instead of insert
-    public boolean insertSellingPrice(String SellingPrice) {
+    public boolean updateSellingPrice(String SellingPrice) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Col_14, SellingPrice);
 
         try {
-            long result = db.insertOrThrow(Table_NAME, null, contentValues);
+            long result = db.update(Table_NAME, contentValues, Col_1 + " =?", new String[]{GlobalVariables.getInstance().aName});
         } catch(SQLException exception) {
             Log.v("SQL Exception", exception.getLocalizedMessage());
             return false;

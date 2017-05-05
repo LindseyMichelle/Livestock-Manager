@@ -138,9 +138,10 @@ public class SpecificAnimalView extends AppCompatActivity {
                         // TODO: Gray out item in list
                         // http://stackoverflow.com/questions/1246613/android-list-with-grayed-out-items
 
-                    boolean priceInserted = mydb.insertSellingPrice(spInput.getText().toString());
+                    boolean priceInserted = mydb.updateSellingPrice(spInput.getText().toString());
                     if(priceInserted) {
                         Toast.makeText(SpecificAnimalView.this, "Selling Price Recorded", Toast.LENGTH_LONG).show();
+                        recreate();
                     } else {
                         Toast.makeText(SpecificAnimalView.this, "Selling Price Not Recorded", Toast.LENGTH_LONG).show();
                         finish();
@@ -245,8 +246,8 @@ public class SpecificAnimalView extends AppCompatActivity {
         Double feedLbsPerBag = Double.parseDouble(fa);
         Double feedPoundsPerDay = Double.parseDouble(fr);
         Double purchasePrice = Double.parseDouble(pp);
-        Double sellingPrice = 0.0;
-//        Double sellingPrice = Double.parseDouble(sp); // This does not work. DB sellingPriceInsert at fault?
+        //Double sellingPrice = 0.0;
+        Double sellingPrice = Double.parseDouble(sp); // This does not work. DB sellingPriceInsert at fault?
         Date purchaseDateDate = DateUtil.stringToDate(pd);
         Calendar purchaseDateCal = DateUtil.dateToCalendar(purchaseDateDate);
         Calendar currentDate = Calendar.getInstance(Locale.getDefault());
