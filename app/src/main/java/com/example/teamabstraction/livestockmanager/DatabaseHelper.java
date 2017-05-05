@@ -376,14 +376,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res2;
     }
 
-//    public Cursor getProfit() {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//
-//        String name = GlobalVariables.getInstance().aName;
-//        Cursor res = db.query(Table_Profits, new String[] {"ProfitToDate"}, PAnimal_Name +"=?", new String[] {name}, null, null,  null);
-//
-//        if (res != null)
-//            res.moveToFirst();
-//        return res;
-//    }
+    public Cursor getAllProfits() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.query(Table_Profits, new String[]{"ProfitToDate"}, null, null, null, null, null);
+
+        if (res != null)
+            res.moveToFirst();
+        return res;
+    }
 }

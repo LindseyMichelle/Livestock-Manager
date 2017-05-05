@@ -100,11 +100,8 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         m_Text = input.getText().toString();
-                        boolean isinserted = mydb.insertAnimalType(m_Text);
-                        if(isinserted = true)
-                            Toast.makeText(HomeActivity.this, "Data Inserted",Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(HomeActivity.this, "Data not Inserted",Toast.LENGTH_LONG).show();
+                        mydb.insertAnimalType(m_Text);
+
                         recreate();
                         // TODO: m_text to database
                     }
@@ -183,12 +180,18 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    private Integer totalProfit () {
-        Integer totalProfit = 2000;
-        // need to redo the profit table for the variables used (add column for
-        // indAnimalProfit and then sum() from that column.
-        return totalProfit;
+    private String totalProfit () {
+        Cursor data = mydb.getAllProfits();
+        String sumString;
+        Double sum = 0.00;
+        do{
+            sum += Double.parseDouble(data.getString(0));
+        } while(data.moveToNext());
+        sumString = sum.toString();
+        return sumString;
     }
+
+
 
     private void populateListView() {
         Log.d(TAG, "populateListView: Displaying data in ListView");
@@ -199,9 +202,10 @@ public class HomeActivity extends AppCompatActivity {
             return;
         }
 
-        do{
+        do {
             listData.add(data.getString(0));
-        }while (data.moveToNext());
+        } while (data.moveToNext());
+
 
         ListAdapter adapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listData);
         animalListView.setAdapter(adapter);

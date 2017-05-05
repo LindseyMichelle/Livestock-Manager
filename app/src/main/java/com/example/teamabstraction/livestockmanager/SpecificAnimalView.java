@@ -28,14 +28,6 @@ public class SpecificAnimalView extends AppCompatActivity {
     private Button editAnimal;
     private Button markAsSold;
     private String s_text= "";
-    // These variables need to come from the DB;
-    public Integer purchasePrice = 100; // AnimalInfo: purchase price DB: animal (price)
-    public Integer salePrice = 0; // SpecificAnimalView: selling price; DB: profits(gain)
-    public Integer feedCostPerBag = 50; // AnimalInfo: Cost/Bag of Feed; DB: feed(cost)
-    public Integer feedPerDay = 1; // AnimalInfo: Feed Amount/Day; DB: feed(regiment)
-    public Integer feedLbsPerBag = 50; // AnimalInfo: Cost/Bag of Feed DB: feed(amount)
-//    public Double profit = 0.0; // TODO: needs to store in DB somewhere. Make new variable for Profit in profit table
-    public String daysOwned = "200.0";// TODO: AnimalInfo: Purchase Date (need to calculate): DB: Animal(purchase date)
     public String profitDisplayString;
     DatabaseHelper mydb;
 
