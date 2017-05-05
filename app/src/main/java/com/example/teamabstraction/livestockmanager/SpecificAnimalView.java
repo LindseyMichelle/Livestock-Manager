@@ -72,6 +72,7 @@ public class SpecificAnimalView extends AppCompatActivity {
         final Cursor fr = mydb.getAnimalFeedRegiment();
         final Cursor fa = mydb.getAnimalFeedAmount();
         final Cursor fc = mydb.getAnimalFeedCost();
+//        final Cursor ptd = mydb.getProfit();
 
         profitDisplayString = calculateProfit(pd.getString(0), pp.getString(0),
                 sp.getString(0), fr.getString(0), fa.getString(0), fc.getString(0));
@@ -91,6 +92,8 @@ public class SpecificAnimalView extends AppCompatActivity {
         feedregiment.setText(fr.getString(0));
         feedamount.setText(fa.getString(0));
         feedcost.setText(fc.getString(0));
+
+        System.out.println("Selling Price: " + sellingprice);
 
 
         // creates delete button to remove specific animal from DB
@@ -251,13 +254,14 @@ public class SpecificAnimalView extends AppCompatActivity {
         double daysOwnedDouble = (double) daysOwned;
 
 
-        System.out.println("Days Owned: " + daysOwned);
+
         Double costPerPound = feedCostPerBag/feedLbsPerBag;
 //        System.out.println("Cost Per Pound: " + costPerPound);
 
         Double feedCostPerDay = feedPoundsPerDay*costPerPound;
 //        System.out.println("feedCostPerDay: " + feedCostPerDay);
 
+        System.out.println("Days Owned: " + daysOwnedDouble);
         Double totalRunningFeedCost = daysOwnedDouble*feedCostPerDay;
 //        System.out.println("Total Running Feed Cost: " + totalRunningFeedCost);
 
@@ -267,6 +271,7 @@ public class SpecificAnimalView extends AppCompatActivity {
 
         profitString = profit.toString();
         mydb.insertProfit(profitString);
+
 
         // remove this toast once it is for sure inserted into the DB
 //        boolean profitInserted = mydb.insertProfit(profitString);

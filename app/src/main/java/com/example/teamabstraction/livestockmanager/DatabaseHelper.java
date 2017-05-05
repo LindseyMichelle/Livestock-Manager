@@ -147,6 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    // make this an update instead of insert
     public boolean insertSellingPrice(String SellingPrice) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -374,4 +375,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             res2.moveToFirst();
         return res2;
     }
+
+//    public Cursor getProfit() {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//
+//        String name = GlobalVariables.getInstance().aName;
+//        Cursor res = db.query(Table_Profits, new String[] {"ProfitToDate"}, PAnimal_Name +"=?", new String[] {name}, null, null,  null);
+//
+//        if (res != null)
+//            res.moveToFirst();
+//        return res;
+//    }
 }
