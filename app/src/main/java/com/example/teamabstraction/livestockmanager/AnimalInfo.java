@@ -79,7 +79,6 @@ public class AnimalInfo extends AppCompatActivity
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: call methods for insert to each table, rename this to animal insert
 
                 if(GlobalVariables.getInstance().edit == true){
                     boolean isUpdated = mydb.updateAnimalTable(
@@ -94,7 +93,6 @@ public class AnimalInfo extends AppCompatActivity
 
 
 
-                    // TODO: call insert feed method- not working
                     boolean feedUpdated = mydb.updateFeedData(editFeedName.getText().toString(),
                             editFeedAmount.getText().toString(),
                             editFeedRegiment.getText().toString(),
@@ -121,7 +119,6 @@ public class AnimalInfo extends AppCompatActivity
                             GlobalVariables.getInstance().aType);
 
 
-                    // TODO: call insert feed method- not working
                     boolean feedInserted = mydb.insertFeedData(editFeedName.getText().toString(),
                             editFeedAmount.getText().toString(),
                             editFeedRegiment.getText().toString(),
@@ -138,7 +135,6 @@ public class AnimalInfo extends AppCompatActivity
                     }
                 }
             }
-            // TODO: remove finish and go back to list of ind animal
         });
     }
 }

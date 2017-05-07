@@ -63,11 +63,11 @@ public class SpecificAnimalView extends AppCompatActivity {
         final Cursor fa = mydb.getAnimalFeedAmount();
         final Cursor fc = mydb.getAnimalFeedCost();
 
-        profitDisplayString = ProfitUtil.calculateProfit(this, GlobalVariables.getInstance().aName);
+        profitDisplayString = ProfitUtil.calculateProfit(this);
 
 
         tv.setText(String.valueOf(profitDisplayString));
-//        TODO: cannot be in the onCreate- where to move it? 
+
 
         aName.setText(GlobalVariables.getInstance().aName);
         breed.setText(br.getString(0));
@@ -92,7 +92,6 @@ public class SpecificAnimalView extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog deleteConfirmation = AskOption();
                 deleteConfirmation.show();
-                // TODO: insert code to delete from DB
             }
         });
 
@@ -104,7 +103,6 @@ public class SpecificAnimalView extends AppCompatActivity {
                 GlobalVariables.getInstance().edit = true;
                 Intent editAnimalIntent = new Intent(SpecificAnimalView.this, AnimalInfo.class);
                 startActivity(editAnimalIntent);
-            // TODO: Create intent that passes all values back to the AnimalInfo activity
             }
         });
         markAsSold = (Button) findViewById(R.id.mark_as_sold);
@@ -124,7 +122,6 @@ public class SpecificAnimalView extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         s_text = spInput.getText().toString();
-                        // TODO: Gray out item in list
                         // http://stackoverflow.com/questions/1246613/android-list-with-grayed-out-items
 
                     boolean priceInserted = mydb.updateSellingPrice(spInput.getText().toString());
@@ -169,7 +166,6 @@ public class SpecificAnimalView extends AppCompatActivity {
                 //set message and title
                 .setTitle("Delete")
                 .setMessage("Are you sure you want to delete " + name + "?" )
-                        // TODO: insert animals name that will be deleted
 
                         .setPositiveButton ("Delete", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {

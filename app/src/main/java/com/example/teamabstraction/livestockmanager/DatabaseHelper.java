@@ -8,7 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-// TODO: Make sure all variables that are input are being stored in DB (line 64)
+
+// TODO: take global variables out (anti-pattern)- bad practice
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "LivestockManager";
 
@@ -20,12 +21,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String Col_4 = "NChildren";
     public static final String Col_5 = "Product";
     public static final String Col_6 = "PurchaseDate";
-//    public static final String Col_7 = "FName";
-//    public static final String Col_8 = "Feed Regiment";
-//    public static final String Col_9 = "FAmount";
-//    public static final String Col_10 = "FCost";
     public static final String Col_11 = "PurchasePrice";
-    public static final String Col_14 = "SellingPrice"; // use in specAnimalView
+    public static final String Col_14 = "SellingPrice";
     public static final String Col_13 = "AType";
 
     public static final String Table_Type = "AnimalType";
@@ -95,7 +92,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Col_5, Product);
         contentValues.put(Col_6, PurchaseDate);
         contentValues.put(Col_11, PurchasePrice);
-        contentValues.put(Col_13, AType); // TODO: should be its own function inserttype
+        contentValues.put(Col_13, AType);
 
         GlobalVariables.getInstance().aName = Name;
 
