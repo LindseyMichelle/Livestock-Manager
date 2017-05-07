@@ -96,5 +96,12 @@ public class IndAnimalList extends AppCompatActivity {
         individualAnimalListView.setAdapter(adapter);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent backIntent = new Intent(IndAnimalList.this, HomeActivity.class);
+        startActivity(backIntent);
+        finish();
+    }
+
 }
 

@@ -6,9 +6,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by lindseyballard on 4/24/17.
- */
+///**
+// * Created by lindseyballard on 4/24/17.
+// */
 
 
 public class DateUtil {
@@ -18,17 +18,16 @@ public class DateUtil {
     // daysOwned for profit calculations.
     public static Date stringToDate(String inputDate) {
         // pull this form the db for each animal
-        try {
-            Date date1 = new SimpleDateFormat("mm/dd/yyyy", Locale.ENGLISH).parse(inputDate);
+//        try {
+            Date date1 = new Date(inputDate);
+        System.out.println("PURCHASE DATE: " + date1);
             return date1;
-        } catch (ParseException e) {
-            System.out.println("ERROR - " + e.getMessage());
-            return null;
-        }
+
     }
 
     public static Calendar dateToCalendar(Date inputDate) {
         Calendar cal = Calendar.getInstance();
+        System.out.println("CURRENT DATE: " + cal);
         cal.setTime(inputDate);
         return cal;
     }

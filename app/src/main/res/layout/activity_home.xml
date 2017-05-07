@@ -87,12 +87,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/totalProfit"
+        android:id="@+id/totalProfitWords"
+        android:text="Profit to date:\n $"
         android:textStyle="bold"
         android:textSize="15sp"
         android:layout_gravity="bottom|start"
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="@dimen/add_animal_margin"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/totalProfit"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="32dp"
         android:textColor="@android:color/white"/>
 
     <include
