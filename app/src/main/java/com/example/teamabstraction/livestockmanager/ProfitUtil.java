@@ -14,7 +14,7 @@ import java.util.Locale;
 
 
 public class ProfitUtil {
-    public static String calculateProfit (Context context, String animal) {
+    public static String calculateProfit (Context context) {
         DatabaseHelper mydb;
         mydb = new DatabaseHelper(context);
 
@@ -74,15 +74,12 @@ public class ProfitUtil {
 //        System.out.println("Cost Per Pound: " + costPerPound);
 
         Double feedCostPerDay = feedPoundsPerDay*costPerPound;
-//        System.out.println("feedCostPerDay: " + feedCostPerDay);
 
-        System.out.println("Days Owned: " + daysOwnedDouble);
+//        System.out.println("Days Owned: " + daysOwnedDouble);
         Double totalRunningFeedCost = daysOwnedDouble*feedCostPerDay;
-//        System.out.println("Total Running Feed Cost: " + totalRunningFeedCost);
 
-//        System.out.println("Profit Before Calc: " + profit);
         profit = -1*(totalRunningFeedCost+purchasePrice)+sellingPrice;
-        System.out.println("Profit After Calc: " + profit);
+//        System.out.println("Profit After Calc: " + profit);
 
         profitString = profit.toString();
 

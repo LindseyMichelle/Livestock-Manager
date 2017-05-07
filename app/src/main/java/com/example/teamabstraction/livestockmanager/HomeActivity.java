@@ -137,7 +137,6 @@ public class HomeActivity extends AppCompatActivity {
                         m_Text = input.getText().toString();
                         AlertDialog deleteConfirmation = AskOption();
                         deleteConfirmation.show();
-                        // TODO: m_text to database
                     }
                 });
                 builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -156,12 +155,12 @@ public class HomeActivity extends AppCompatActivity {
                 //set message and title
                 .setTitle("Delete")
                 .setMessage("Are you sure you want to delete the animal type " + m_Text + "?")
-                // TODO: insert animals name that will be deleted
+
 
                 .setPositiveButton ("Delete", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         //code to remove from database
-                        // TODO: insert code to remove animal from DB
+
                         mydb.deleteAnimalType(m_Text);
                         dialog.dismiss();
                         recreate();
@@ -211,16 +210,15 @@ public class HomeActivity extends AppCompatActivity {
         Cursor data = mydb.getAllAnimals();
         String sumString = "0";
         String profitCalc;
-        String dbString;
+        String animalName;
         Double tempDouble;
         Double sum = 0.00;
         try {
             do {
-                dbString = data.getString(0);
-                System.out.println("dbSTRING VALUE: " + dbString);
-                profitCalc = "100";
-//                ProfitUtil.calculateProfit(getBaseContext(), dbString);
-//              TODO: get this to work
+                animalName = data.getString(0);
+                System.out.println("dbSTRING VALUE: " + animalName);
+                GlobalVariables.getInstance().aName = animalName;
+                profitCalc = ProfitUtil.calculateProfit(getBaseContext());
                 tempDouble = Double.parseDouble(profitCalc);
                 sum += tempDouble;
             } while (data.moveToNext());
