@@ -8,6 +8,30 @@
     android:background="@drawable/background">
 
 
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id = "@+id/specificAnimalMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize = "40sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textAlignment="center"
+            android:typeface="sans"
+            />
+
+
+    </RelativeLayout>
 
     // layout to display the data about the animal. I don't think it's necessary to
     // display cost/bag or lbs/bag that is just for profit calculations
@@ -17,7 +41,10 @@
         android:id="@+id/container_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp" >
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="60sp"
+        android:layout_below="@+id/header"
+        android:fillViewport="true">
 
 
         <GridLayout
@@ -440,8 +467,8 @@
         android:layout_margin="@dimen/add_animal_margin"
         android:layout_gravity="bottom|center"
         android:text="Edit"
-        android:textSize="16sp"
         android:textAllCaps="false"
+        android:textSize="18sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="164dp"
         tools:layout_editor_absoluteY="450dp"
@@ -455,10 +482,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/add_animal_margin"
-        android:textSize="15sp"
         android:textStyle="bold"
         android:text="Mark As Sold"
         android:textAllCaps="false"
+        android:textSize="16sp"
         android:textColor="@android:color/black" />
 
     <Button
@@ -468,10 +495,10 @@
         android:layout_height="45dp"
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/add_animal_margin"
-        android:textSize="16sp"
         android:text="Delete"
         android:textStyle="bold"
         android:textAllCaps="false"
+        android:textSize="18sp"
         android:textColor="@android:color/black"/>
 
 

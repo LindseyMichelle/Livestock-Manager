@@ -16,7 +16,7 @@
         android:orientation="horizontal"
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
+        android:layout_height="90sp"
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary" />
 
@@ -24,7 +24,7 @@
         android:id = "@+id/individualAnimalMessage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize = "18sp"
+        android:textSize = "32sp"
         android:textStyle="bold"
         android:textColor="@color/colorAccent"
         android:textAlignment="center"
@@ -34,11 +34,10 @@
         android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@+id/header"
+        android:layout_marginTop="110sp"
         android:paddingBottom="@dimen/list_padding_bottom"
         android:id = "@+id/individualAnimalList"
         android:textSize = "16sp"
-        android:layout_margin="40sp"
         android:textColor="@android:color/black">
     </ListView>
 

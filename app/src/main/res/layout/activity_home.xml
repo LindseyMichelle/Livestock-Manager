@@ -17,7 +17,7 @@
         android:orientation="horizontal"
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
+        android:layout_height="110sp"
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary">
 
@@ -25,7 +25,7 @@
             android:id = "@+id/welcomeMessage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize = "18sp"
+            android:textSize = "40sp"
             android:textStyle="bold"
            android:textColor="@color/colorAccent"
             android:textAlignment="center"
@@ -47,9 +47,10 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:id = "@+id/welcomeString"
-           android:layout_marginTop="40sp"
-           android:textSize="20sp"
-
+           android:textSize="24sp"
+           android:layout_marginLeft="16sp"
+           android:layout_gravity="center_horizontal"
+           android:layout_marginTop="115sp"
            android:textColor="@android:color/black"
            />
 
@@ -57,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id = "@+id/animalList"
-        android:layout_marginTop="76sp"
+        android:layout_marginTop="200sp"
         android:textColor="@android:color/black"
         android:divider="@null"/>
 
