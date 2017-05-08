@@ -18,9 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IndAnimalList"/>
-        <activity android:name=".AnimalInfo" />
-        <activity android:name=".SpecificAnimalView" />
+        <activity android:name=".IndAnimalList"
+                  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".AnimalInfo"
+                  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".SpecificAnimalView"
+                  android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

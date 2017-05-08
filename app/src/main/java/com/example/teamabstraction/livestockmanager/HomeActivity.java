@@ -22,7 +22,7 @@ import android.widget.EditText;
 import android.text.InputType;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ImageView;
+
 
 
 
@@ -32,14 +32,13 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "AnimalTypeActivity";
 
     private ListView animalListView;
-    private ArrayAdapter<String> animalListAdapter;
     private Button addAnimal;
-    private ImageView homePicture;
 
     private Button deleteAnimal;
     private String m_Text = "";
 
     private TextView welcomeMessage;
+    private TextView welcomeString;
 
     DatabaseHelper mydb;
 
@@ -49,11 +48,12 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         mydb = new DatabaseHelper(this);
-        welcomeMessage = (TextView) findViewById(R.id.displayWelcomeInformation);
-        welcomeMessage.setText(R.string.displayWelcomeInformation);
+        welcomeMessage = (TextView) findViewById(R.id.welcomeMessage);
+        welcomeMessage.setText(R.string.welcomeMessage);
+
+        welcomeString = (TextView) findViewById(R.id.welcomeString);
+        welcomeString.setText(R.string.homeActivityString);
         //Find the ListView resource
-        homePicture = (ImageView) findViewById(R.id.barn);
-        homePicture.getResources().getDrawable(R.drawable.barn);
         animalListView = (ListView) findViewById(R.id.animalList);
         mydb = new DatabaseHelper(this);
         GlobalVariables.getInstance().edit = false;
@@ -63,14 +63,8 @@ public class HomeActivity extends AppCompatActivity {
         profitView.setText(totalProfit(this));
 
 
-                //Creates and populates a list of animals (May need to import from a database later
-        //String[] animals = new String[]{"Sheep", "Goats", "Cows", "Chickens"};
-        //final ArrayList<String> listOfAnimalsArray = new ArrayList<String>();
-        //listOfAnimalsArray.addAll(Arrays.asList(animals));
-        //animalListAdapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listOfAnimalsArray);
+
         populateListView();
-        //Set the ArrayAdapter as the ListView's Adapter
-        //animalListView.setAdapter(animalListAdapter);
 
         //This will display the animal information once the user clicks on it.
         animalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
