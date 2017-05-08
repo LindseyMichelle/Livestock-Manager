@@ -41,8 +41,8 @@ public class SpecificAnimalView extends AppCompatActivity {
         setContentView(R.layout.activity_specific_animal_view);
         getIntent();
         mydb = new DatabaseHelper(this);
-        //specificAnimalMessage = (TextView)  findViewById(R.id.specificAnimalMessage);
-        //specificAnimalMessage.setText(R.string.specificAnimalMessage);
+        specificAnimalMessage = (TextView)  findViewById(R.id.specificAnimalMessage);
+        specificAnimalMessage.setText(R.string.specificAnimalMessage);
 
       final TextView tv = (TextView)findViewById(R.id.specAnimalProfit);
         TextView aName = (TextView)findViewById(R.id.textAnimalNameDB);
