@@ -47,10 +47,10 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:id = "@+id/welcomeString"
-           android:layout_marginTop="120dp"
            android:textSize="24sp"
+           android:layout_marginLeft="16sp"
            android:layout_gravity="center_horizontal"
-           android:layout_marginStart="16sp"
+           android:layout_marginTop="115sp"
            android:textColor="@android:color/black"
            />
 
