@@ -440,11 +440,13 @@
         android:layout_margin="@dimen/add_animal_margin"
         android:layout_gravity="bottom|center"
         android:text="Edit"
+        android:textSize="16sp"
         android:textAllCaps="false"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="164dp"
         tools:layout_editor_absoluteY="450dp"
         style="?android:attr/borderlessButtonStyle"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/black"/>
 
     <Button
         android:id="@+id/mark_as_sold"
@@ -453,9 +455,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/add_animal_margin"
+        android:textSize="15sp"
+        android:textStyle="bold"
         android:text="Mark As Sold"
         android:textAllCaps="false"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/black" />
 
     <Button
         android:id="@+id/delete_animal"
@@ -464,9 +468,11 @@
         android:layout_height="45dp"
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/add_animal_margin"
+        android:textSize="16sp"
         android:text="Delete"
+        android:textStyle="bold"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/black"/>
 
 
 
