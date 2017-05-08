@@ -334,8 +334,11 @@
             android:layout_marginBottom="53dp"
             android:layout_row="11"
             android:text="Add Data"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
             style="?android:attr/borderlessButtonStyle"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/black"/>
 
     </GridLayout>
 

@@ -49,6 +49,7 @@
            android:id = "@+id/welcomeString"
            android:layout_marginTop="40sp"
            android:textSize="20sp"
+
            android:textColor="@android:color/black"
            />
 
@@ -71,8 +72,9 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/add_animal_margin"
         android:text="@string/add_animal"
+        android:textSize="18sp"
         style="?android:attr/borderlessButtonStyle"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/black"/>
 
 
     <Button
@@ -82,11 +84,12 @@
         android:layout_gravity="bottom|center"
         android:layout_margin="@dimen/add_animal_margin"
         android:text="Delete"
+        android:textSize="18sp"
         android:textAllCaps="false"
         app:layout_anchor="@+id/include3"
         app:layout_anchorGravity="bottom|center_horizontal"
         style="?android:attr/borderlessButtonStyle"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/black"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -94,22 +97,22 @@
         android:id="@+id/totalProfitWords"
         android:text="Profit to date:\n $"
         android:textStyle="bold"
-        android:textSize="15sp"
+        android:textSize="18sp"
         android:layout_gravity="bottom|start"
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="@dimen/add_animal_margin"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/black"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/totalProfit"
         android:textStyle="bold"
-        android:textSize="15sp"
+        android:textSize="18sp"
         android:layout_gravity="bottom|start"
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="32dp"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/black"/>
 
     <include
         android:id="@+id/include3"

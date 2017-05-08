@@ -8,6 +8,7 @@
     tools:context="com.example.teamabstraction.livestockmanager.IndAnimalList"
     android:background="@drawable/background">
 
+
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -41,6 +42,7 @@
         android:textColor="@android:color/black">
     </ListView>
 
+
     <Button
         android:id="@+id/add_ind_animal"
         android:layout_width="130dp"
@@ -48,9 +50,11 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/add_animal_margin"
         android:text="@string/add_animal"
+        android:textStyle="bold"
         android:textAllCaps="false"
+        android:textSize="18sp"
         style="?android:attr/borderlessButtonStyle"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/black"/>
 
 
 </android.support.design.widget.CoordinatorLayout>
