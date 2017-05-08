@@ -7,26 +7,31 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context="com.example.teamabstraction.livestockmanager.HomeActivity"
-    app:theme = "@style/AppTheme"
+
     >
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:weightSum="1">
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary">
 
         <TextView
-            android:id = "@+id/displayWelcomeInformation"
+            android:id = "@+id/welcomeMessage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize = "16sp"
+            android:textSize = "18sp"
             android:textStyle="bold"
-           android:textColor="@android:color/black"
+           android:textColor="@color/colorAccent"
+            android:textAlignment="center"
+            android:typeface="sans"
             />
+
 
     </RelativeLayout>
 
@@ -34,30 +39,29 @@
    <RelativeLayout
        xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_below="@+id/header">
 
-       <ImageView
-           android:layout_width="40sp"
-           android:layout_height="40sp"
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id = "@+id/welcomeString"
            android:layout_marginTop="40sp"
-           android:id="@+id/barn"
-           android:src="@drawable/barn"
+           android:textSize="20sp"
+           android:textColor="@android:color/black"
            />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id = "@+id/animalList"
-        android:textSize = "16sp"
-        android:layout_marginTop="40sp"
-        android:layout_toRightOf="@id/barn"
-        android:textColor="@android:color/black"/>
+        android:layout_marginTop="76sp"
+        android:textColor="@android:color/black"
+        android:divider="@null"/>
+
 
   </RelativeLayout>
-
-
-
 
     <Button
         android:id="@+id/add_animal"

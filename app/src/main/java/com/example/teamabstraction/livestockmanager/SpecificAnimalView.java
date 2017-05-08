@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -29,6 +31,8 @@ public class SpecificAnimalView extends AppCompatActivity {
     private Button markAsSold;
     private String s_text= "";
     public String profitDisplayString;
+    private TextView specificAnimalMessage;
+
     DatabaseHelper mydb;
 
     @Override
@@ -37,6 +41,9 @@ public class SpecificAnimalView extends AppCompatActivity {
         setContentView(R.layout.activity_specific_animal_view);
         getIntent();
         mydb = new DatabaseHelper(this);
+        //specificAnimalMessage = (TextView)  findViewById(R.id.specificAnimalMessage);
+        //specificAnimalMessage.setText(R.string.specificAnimalMessage);
+
       final TextView tv = (TextView)findViewById(R.id.specAnimalProfit);
         TextView aName = (TextView)findViewById(R.id.textAnimalNameDB);
         TextView breed = (TextView)findViewById(R.id.textBreedDisplayDB);

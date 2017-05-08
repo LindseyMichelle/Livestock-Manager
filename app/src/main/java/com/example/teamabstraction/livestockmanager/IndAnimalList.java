@@ -26,6 +26,7 @@ public class IndAnimalList extends AppCompatActivity {
     DatabaseHelper mydb;
     private Button add_ind_animal;
     private ListView individualAnimalListView;
+    private TextView individualAnimalMessage;
 
 
     @Override
@@ -38,7 +39,8 @@ public class IndAnimalList extends AppCompatActivity {
         mydb = new DatabaseHelper(this);
 
         individualAnimalListView = (ListView) findViewById(R.id.individualAnimalList);
-
+        individualAnimalMessage = (TextView) findViewById(R.id.individualAnimalMessage);
+        individualAnimalMessage.setText(R.string.individualAnimalMessage);
         populateListView();
 
 

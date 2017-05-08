@@ -6,20 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.teamabstraction.livestockmanager.IndAnimalList"
-    app:theme ="@style/AppTheme"
     android:background="@drawable/background">
 
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary" />
 
     <TextView
+        android:id = "@+id/individualAnimalMessage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id = "@+id/individualAnimalMessage"
-        android:textColor="@android:color/black"/>
-
+        android:textSize = "18sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:textAlignment="center"
+        android:typeface="sans"
+        />
     <ListView
         android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@+id/header"
         android:paddingBottom="@dimen/list_padding_bottom"
         android:id = "@+id/individualAnimalList"
         android:textSize = "16sp"
