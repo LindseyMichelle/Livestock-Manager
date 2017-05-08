@@ -15,7 +15,7 @@
     <string name="profit_to_date">Profit to date: $</string>
     <string name="total_profit_to_date">Total Running Profit: $ </string>
 
-    <string name ="welcomeMessage"> Welcome to your Livestock Manager!</string>
+    <string name ="welcomeMessage"> Welcome to your \n Livestock Manager!</string>
 
     <string name =  "homeActivityString" > Here are the livestock you have on your ranch: </string>
     <string name = "individualAnimalMessage"> Here is a list of all those animals: </string>

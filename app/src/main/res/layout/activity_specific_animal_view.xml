@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="60sp"
+        android:layout_height="50sp"
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary">
 
@@ -23,7 +23,7 @@
             android:id = "@+id/specificAnimalMessage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize = "40sp"
+            android:textSize = "32sp"
             android:textStyle="bold"
             android:textColor="@color/colorAccent"
             android:textAlignment="center"
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="60dp"
-        android:layout_marginTop="60sp"
+        android:layout_marginTop="50sp"
         android:layout_below="@+id/header"
         android:fillViewport="true">
 
