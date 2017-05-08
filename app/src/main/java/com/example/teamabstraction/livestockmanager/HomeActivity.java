@@ -30,7 +30,6 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "AnimalTypeActivity";
 
     private ListView animalListView;
-    private ArrayAdapter<String> animalListAdapter;
     private Button addAnimal;
     private ImageView homePicture;
 
@@ -46,12 +45,13 @@ public class HomeActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         mydb = new DatabaseHelper(this);
         welcomeMessage = (TextView) findViewById(R.id.displayWelcomeInformation);
         welcomeMessage.setText(R.string.displayWelcomeInformation);
         //Find the ListView resource
         homePicture = (ImageView) findViewById(R.id.barn);
-        homePicture.getResources().getDrawable(R.drawable.barn);
+        //homePicture.getResources().getDrawable(R.drawable.barn);
         animalListView = (ListView) findViewById(R.id.animalList);
         mydb = new DatabaseHelper(this);
         GlobalVariables.getInstance().edit = false;
@@ -60,24 +60,17 @@ public class HomeActivity extends AppCompatActivity {
         TextView profitView = (TextView)findViewById(R.id.totalProfit);
         profitView.setText("Profit to date: $" + totalProfit());
 
-
-                //Creates and populates a list of animals (May need to import from a database later
-        //String[] animals = new String[]{"Sheep", "Goats", "Cows", "Chickens"};
-        //final ArrayList<String> listOfAnimalsArray = new ArrayList<String>();
-        //listOfAnimalsArray.addAll(Arrays.asList(animals));
-        //animalListAdapter = new ArrayAdapter<String>(this, R.layout.animal_list_text_view, listOfAnimalsArray);
         populateListView();
-        //Set the ArrayAdapter as the ListView's Adapter
-        //animalListView.setAdapter(animalListAdapter);
 
         //This will display the animal information once the user clicks on it.
         animalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent myIntent = new Intent(HomeActivity.this, IndAnimalList.class);
-                    GlobalVariables.getInstance().aType = (String)parent.getItemAtPosition(position);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                    homePicture.getResources().getDrawable(R.drawable.barn);
+                    Intent myIntent = new Intent(HomeActivity.this, IndAnimalList.class);
+                    GlobalVariables.getInstance().aType = (String) parent.getItemAtPosition(position);
                     startActivity(myIntent);
-
             }
         });
 

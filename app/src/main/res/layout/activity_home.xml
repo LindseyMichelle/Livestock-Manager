@@ -6,12 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context="com.example.teamabstraction.livestockmanager.HomeActivity"
-    app:theme = "@style/AppTheme"
-    >
+    app:theme="@style/AppTheme"
+    tools:context="com.example.teamabstraction.livestockmanager.HomeActivity">
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,80 +18,76 @@
         android:weightSum="1">
 
         <TextView
-            android:id = "@+id/displayWelcomeInformation"
+            android:id="@+id/displayWelcomeInformation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize = "16sp"
-           android:textColor="@android:color/black"
-            />
+            android:textColor="@android:color/black"
+            android:textSize="22sp" />
 
     </RelativeLayout>
 
 
-   <RelativeLayout
-       xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-       <ImageView
-           android:layout_width="40sp"
-           android:layout_height="40sp"
-           android:layout_marginTop="40sp"
-           android:id="@+id/barn"
-           android:src="@drawable/barn"
-           />
+        <ImageView
+            android:id="@+id/barn"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_marginTop="50sp"
+            android:src="@drawable/barn" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id = "@+id/animalList"
-        android:textSize = "16sp"
-        android:layout_marginTop="40sp"
-        android:layout_toRightOf="@id/barn"
-        android:textColor="@android:color/black"/>
+        <ListView
+            android:id="@+id/animalList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60sp"
+            android:layout_toRightOf="@id/barn"
+            android:textColor="@android:color/black"
+            android:textSize="32sp" />
 
-  </RelativeLayout>
-
-
+    </RelativeLayout>
 
 
     <Button
         android:id="@+id/add_animal"
-        android:textAllCaps="false"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/add_animal_margin"
         android:text="@string/add_animal"
-        style="?android:attr/borderlessButtonStyle"
-        android:textColor="@android:color/white"/>
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
 
 
     <Button
         android:id="@+id/delete_animal_type"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_margin="@dimen/add_animal_margin"
         android:text="Delete"
         android:textAllCaps="false"
+        android:textColor="@android:color/white"
         app:layout_anchor="@+id/include3"
-        app:layout_anchorGravity="bottom|center_horizontal"
-        style="?android:attr/borderlessButtonStyle"
-        android:textColor="@android:color/white"/>
+        app:layout_anchorGravity="bottom|center_horizontal" />
 
     <TextView
+        android:id="@+id/totalProfit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/totalProfit"
         android:layout_gravity="bottom|start"
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="@dimen/add_animal_margin"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white" />
 
     <include
         android:id="@+id/include3"
-        layout="@layout/content_home" />
+        layout="@layout/content_home"
+        />
 
 </android.support.design.widget.CoordinatorLayout>
